@@ -206,6 +206,37 @@ body {
 .hero__hourse-gaucho {
   transform: translateX(-20%) translateY(7%);
 }
+.hero__stones {
+  position: absolute;
+  z-index: 2;
+  left: 58.5%;
+  top: 54%;
+  width: 22%;
+  animation: chestLightsSoft 1.3s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+@keyframes chestLightsSoft {
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  25% {
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+  75% {
+    opacity: 0.35;
+    transform: scale(1.015);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
 .hero__content {
   position: relative;
   z-index: 2;
@@ -236,8 +267,42 @@ body {
   text-align: right;
   color: var(--orangeColor);
 }
-.hero__map img {
+.hero__map-wrap {
+  position: relative;
   width: min(100%, 57.5rem);
+}
+.hero__map--1 {
+  position: relative;
+  z-index: 1;
+  animation: mapFirst 6s ease-in-out infinite;
+}
+.hero__map--2 {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  animation: mapSecond 6s ease-in-out infinite;
+}
+@keyframes mapFirst {
+  0%, 40% {
+    opacity: 1;
+  }
+  50%, 90% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes mapSecond {
+  0%, 40% {
+    opacity: 0;
+  }
+  50%, 90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 .button-wrapper {
   padding: 0.6875rem;
@@ -619,6 +684,11 @@ body {
     font-size: 1.5rem;
   }
 }
+@media (max-width: 68.75em) and (width <= 23.4375em){
+  .hero__hourse-gaucho {
+    width: 21.4375rem;
+  }
+}
 @media (width <= 23.4375em){
   .header {
     padding-block: 1.25rem;
@@ -655,6 +725,11 @@ body {
   }
   .bonus-card__number {
     width: 5rem;
+  }
+}
+@media (max-width: 68.75em) and (width > 68.75em){
+  .hero__hourse-gaucho {
+    width: 61.25rem;
   }
 }
 @media (width > 23.4375em) and (width <= 100em){
@@ -719,6 +794,11 @@ body {
   }
   .bonus-card__head h3 {
     font-size: clamp( 1.5rem , 0.32978723404375rem  +  1.7021276596vw , 2rem );
+  }
+}
+@media (max-width: 68.75em) and (width > 23.4375em) and (width <= 68.75em){
+  .hero__hourse-gaucho {
+    width: clamp( 21.4375rem , 0.84482758620625rem  +  87.8620689655vw , 61.25rem );
   }
 }
 @media (width > 73.125em) and (width <= 98.125em){
