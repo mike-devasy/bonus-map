@@ -269,38 +269,45 @@ body {
 }
 .hero__map-wrap {
   position: relative;
-  width: min(100%, 57.5rem);
 }
 .hero__map--1 {
+  width: min(100%, 57.5rem);
   position: relative;
   z-index: 1;
-  animation: mapFirst 6s ease-in-out infinite;
+  animation: mapFirst 7s ease-in-out infinite;
+}
+.hero__map--1 img {
+  width: 100%;
 }
 .hero__map--2 {
+  width: min(100%, 57.5rem);
   position: absolute;
   inset: 0;
   z-index: 2;
-  animation: mapSecond 6s ease-in-out infinite;
+  animation: mapSecond 7s ease-in-out infinite;
+}
+.hero__map--2 img {
+  width: 100%;
 }
 @keyframes mapFirst {
-  0%, 40% {
+  0%, 25% {
     opacity: 1;
   }
-  50%, 90% {
+  45%, 75% {
     opacity: 0;
   }
-  100% {
+  95%, 100% {
     opacity: 1;
   }
 }
 @keyframes mapSecond {
-  0%, 40% {
+  0%, 25% {
     opacity: 0;
   }
-  50%, 90% {
+  45%, 75% {
     opacity: 1;
   }
-  100% {
+  95%, 100% {
     opacity: 0;
   }
 }
