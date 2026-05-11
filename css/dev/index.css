@@ -928,9 +928,6 @@ body {
   .button {
     font-size: 1.75rem;
   }
-  .hero__body {
-    padding-top: 1.25rem;
-  }
   .hero__title {
     margin-bottom: 1rem;
   }
@@ -1003,9 +1000,6 @@ body {
   .button {
     font-size: clamp( 1.75rem , 1.67346938775625rem  +  0.3265306122vw , 2rem );
   }
-  .hero__body {
-    padding-top: clamp( 1.25rem , 0.6760204081625rem  +  2.4489795918vw , 3.125rem );
-  }
   .hero__title {
     margin-bottom: clamp( 1rem , 0.92346938775625rem  +  0.3265306122vw , 1.25rem );
   }
@@ -1039,9 +1033,9 @@ body {
     width: clamp( 21.4375rem , -2.72916666666875rem  +  103.1111111111vw , 35.9375rem );
   }
 }
-@media (width > 48.75em){
+@media (width > 48.75em) and (width <= 98.125em){
   .hero__body {
-    min-height: 75svh;
+    padding-top: clamp( 3.125rem , 9.335443037975rem  +  -6.3291139241vw , 6.25rem );
   }
 }
 @media (max-width: 48.75em) and (width > 23.4375em) and (width <= 48.75em){
@@ -1058,11 +1052,6 @@ body {
 @media (max-width: 48.75em) and (width > 23.4375em) and (width <= 100em){
   .header__logo {
     width: clamp( 14.375rem , 11.98341836735rem  +  10.2040816327vw , 22.1875rem );
-  }
-}
-@media (width > 56.25em){
-  .hero__body {
-    min-height: 80svh;
   }
 }
 @media (width > 68.75em) and (width <= 98.125em){
@@ -1089,11 +1078,6 @@ body {
   }
   .bonus-card__head h3 {
     font-size: clamp( 1.5rem , 0.32978723404375rem  +  1.7021276596vw , 2rem );
-  }
-}
-@media (width > 68.75em){
-  .hero__body {
-    min-height: 100svh;
   }
 }
 @media (max-width: 68.75em) and (width > 48em) and (width <= 68.75em){
@@ -1183,9 +1167,6 @@ body {
   }
   .button {
     font-size: 2rem;
-  }
-  .hero__body {
-    padding-top: 3.125rem;
   }
   .hero__title {
     margin-bottom: 1.25rem;
