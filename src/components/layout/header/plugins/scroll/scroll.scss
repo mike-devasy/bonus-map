@@ -1,0 +1,22 @@
+[data-fls-header-scroll] {
+	transition: background-color 0.8s;
+	&.--header-scroll {
+		position: fixed;
+		// position: sticky;
+		background-color:#0c0c18b6;
+		top: 0;
+		right: 0;
+		left: 0;
+		z-index: 50;
+	}
+}
+
+[data-fls-header-scroll-show] {
+	&.--header-scroll {
+		transition: translate 0.3s;
+		translate: 0px -100%;
+	}
+	&.--header-show {
+		translate: 0 0;
+	}
+}

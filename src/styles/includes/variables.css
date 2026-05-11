@@ -1,0 +1,26 @@
+/** @format */
+
+:root {
+	--fontFamily:"Manrope", sans-serif;
+	--secondaryFont:"Zalando Sans Expanded", serif;
+  --primary: #ffff;
+  --blueColor: #0076ec;
+  --bgColor: #0c0c18;
+  --orangeColor: #fc6200;
+  --greyColor: #27273f;
+  --violetColor: #1f1f33;
+  --darkVioletColor: #151526;
+		--color-black-solid: #000;
+	--color-yellow-47: #b6de13;
+	--color-azure-17: #0a234f;
+	--color-white-solid: #fff;
+	--color-yellow-48: #b9e113;
+	--color-grey-59: #979797;
+	--color-grey-19: #303030;
+	--color-grey-64: #a2a2a2;
+	--color-grey-54: #8a8a8a;
+	--color-grey-65: #a6a6a6;
+	--color-grey-85-910: rgba(217, 217, 217, 0.91);
+	--color-yellow-52: #b9d532;
+	--color-blue-5: #050813;
+}
