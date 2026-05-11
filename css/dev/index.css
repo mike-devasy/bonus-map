@@ -188,6 +188,8 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
+  min-height: 100svh;
+  height: 100%;
 }
 .hero::before {
   content: "";
