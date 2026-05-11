@@ -880,9 +880,6 @@ body {
     display: block;
     top: -0.3125rem;
   }
-  .bonus-steps__background {
-    margin-top: 3.125rem;
-  }
   .bonus-steps__background::after {
     display: none;
   }
@@ -916,6 +913,11 @@ body {
 @media (max-width: 37.5em) and (width <= 23.4375em){
   .hero__map-wrap {
     width: 21.4375rem;
+  }
+}
+@media (max-width: 37.5em){
+  .bonus-steps__container {
+    margin-bottom: 0;
   }
 }
 @media (width <= 23.4375em){
