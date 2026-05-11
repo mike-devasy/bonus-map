@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/logo-fav.svg">
 		<title>Bonus Map</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1778421982932"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1778421982932">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1778421982932">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1778499706486"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1778499706486">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1778499706486">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -294,10 +294,10 @@
 											</div>
 										</dl>
 									</article>
-									<picture class="bonus-steps__chest">
+									<picture data-fls-dynamic=".bonus-steps__body, 780, 1" class="bonus-steps__chest">
 										<picture>
 											<source media="(max-width: 600px)" srcset="./assets/img/steps/02-600.webp" type="image/webp">
-											<img alt="" src="./assets/img/steps/02.webp">
+											<img alt="Image" src="./assets/img/steps/02.webp">
 										</picture>
 									</picture>
 									<article class="bonus-card bonus-card--7">
@@ -481,7 +481,9 @@
 						</div>
 						<div class="bonus-steps__background">
 							<a href="#" class="bonus-steps__link">
-								<img src="./assets/img/steps/info.svg" alt="Image">
+								<div class="bonus-steps__link-icon">
+									<img src="./assets/img/steps/info.svg" alt="Image">
+								</div>
 								<p>
 									You get Free Spins
 									<br>
@@ -491,6 +493,8 @@
 								</p>
 							</a>
 							<picture class="bonus-steps__image">
+								<source media="(min-width:600px)" srcset="./assets/img/steps/bottom-bg.webp">
+								<source media="(min-width:375px)" srcset="./assets/img/steps/bottom-bg-small.webp">
 								<picture>
 									<source media="(max-width: 600px)" srcset="./assets/img/steps/bottom-bg-600.webp" type="image/webp">
 									<source media="(max-width: 1200px)" srcset="./assets/img/steps/bottom-bg-1200.webp" type="image/webp">
