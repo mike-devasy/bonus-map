@@ -915,11 +915,6 @@ body {
     width: 21.4375rem;
   }
 }
-@media (max-width: 37.5em){
-  .bonus-steps__container {
-    margin-bottom: 0;
-  }
-}
 @media (width <= 23.4375em){
   .header {
     padding-block: 1.25rem;
