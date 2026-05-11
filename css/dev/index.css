@@ -1039,9 +1039,9 @@ body {
     width: clamp( 21.4375rem , -2.72916666666875rem  +  103.1111111111vw , 35.9375rem );
   }
 }
-@media (width > 46.25em){
+@media (width > 48.75em){
   .hero__body {
-    min-height: 70svh;
+    min-height: 75svh;
   }
 }
 @media (max-width: 48.75em) and (width > 23.4375em) and (width <= 48.75em){
@@ -1058,11 +1058,6 @@ body {
 @media (max-width: 48.75em) and (width > 23.4375em) and (width <= 100em){
   .header__logo {
     width: clamp( 14.375rem , 11.98341836735rem  +  10.2040816327vw , 22.1875rem );
-  }
-}
-@media (width > 51.25em){
-  .hero__body {
-    min-height: 75svh;
   }
 }
 @media (width > 56.25em){
