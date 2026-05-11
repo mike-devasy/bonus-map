@@ -880,6 +880,9 @@ body {
     display: block;
     top: -0.3125rem;
   }
+  .bonus-steps__background {
+    margin-top: 2.5rem;
+  }
   .bonus-steps__background::after {
     display: none;
   }
@@ -889,7 +892,7 @@ body {
   }
   .bonus-steps__link {
     position: relative;
-    padding-block: 0.625rem;
+    padding-block: 0.9375rem;
     max-width: 21.875rem;
     margin: 0 auto;
     left: 0;
