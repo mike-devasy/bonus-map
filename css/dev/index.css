@@ -134,6 +134,7 @@ body {
 .header {
   z-index: 100;
   position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
 }
@@ -246,7 +247,6 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 1.25rem;
 }
 .hero__title-main {
   white-space: nowrap;
@@ -270,7 +270,6 @@ body {
   position: relative;
 }
 .hero__map--1 {
-  width: min(100%, 57.5rem);
   position: relative;
   z-index: 1;
   animation: mapFirst 8s ease-in-out infinite;
@@ -279,7 +278,6 @@ body {
   width: 100%;
 }
 .hero__map--2 {
-  width: min(100%, 57.5rem);
   position: absolute;
   inset: 0;
   z-index: 2;
@@ -789,11 +787,26 @@ body {
   }
 }
 @media (max-width: 48.75em) and (width <= 23.4375em){
+  .header__logo {
+    width: 14.375rem;
+  }
+  .hero__body {
+    padding-top: 5rem;
+  }
+  .hero__hourse-gaucho {
+    width: 27.6875rem;
+  }
   .bonus-steps__chest {
     width: 22.5rem;
   }
 }
 @media (max-width: 48.75em){
+  .header__logo {
+    margin: 0 auto;
+  }
+  .hero {
+    display: grid;
+  }
   .hero::before {
     bottom: 12.5rem;
   }
@@ -802,14 +815,21 @@ body {
   }
   .hero__container {
     grid-template-columns: 1fr;
-    align-items: center;
-    justify-content: center;
   }
   .hero__hourse-gaucho {
-    transform: translateX(0) translateY(0);
+    transform: translateY(0);
+    justify-self: center;
   }
   .hero__content {
     grid-row: 1;
+    display: grid;
+    justify-content: center;
+    justify-self: start;
+    padding-bottom: 0;
+  }
+  .button-wrapper {
+    left: auto;
+    margin: 0 auto;
   }
   .button-wrapper--down {
     transform: translateY(-70%);
@@ -866,9 +886,19 @@ body {
     scroll-snap-align: start;
   }
 }
+@media (max-width: 37.5em) and (width <= 23.4375em){
+  .hero__map-wrap {
+    width: 21.4375rem;
+  }
+}
 @media (max-width: 37.5em){
   .bonus-steps__link {
     left: 0;
+  }
+}
+@media (max-width: 29.99875em){
+  .hero__hourse-gaucho {
+    transform: translateX(-10%);
   }
 }
 @media (width <= 23.4375em){
@@ -883,6 +913,9 @@ body {
   }
   .hero__body {
     padding-top: 1.25rem;
+  }
+  .hero__title {
+    margin-bottom: 1rem;
   }
   .hero__title-main {
     font-size: 1.5rem;
@@ -909,6 +942,22 @@ body {
     width: 5rem;
   }
 }
+@media (max-width: 48.75em) and (width > 100em){
+  .header__logo {
+    width: 22.1875rem;
+  }
+}
+@media (max-width: 48.75em) and (width > 48.75em){
+  .hero__body {
+    padding-top: 7.5rem;
+  }
+  .hero__hourse-gaucho {
+    width: 32.5rem;
+  }
+  .bonus-steps__chest {
+    width: 36.25rem;
+  }
+}
 @media (max-width: 68.75em) and (width > 68.75em){
   .hero__hourse-gaucho {
     width: 48.75rem;
@@ -917,14 +966,14 @@ body {
     width: 32.5rem;
   }
 }
+@media (max-width: 37.5em) and (width > 37.5em){
+  .hero__map-wrap {
+    width: 35.9375rem;
+  }
+}
 @media (max-width: 68.75em) and (width > 50em){
   .bonus-steps__title p {
     padding-left: 12.5rem;
-  }
-}
-@media (max-width: 48.75em) and (width > 48.75em){
-  .bonus-steps__chest {
-    width: 36.25rem;
   }
 }
 @media (width > 23.4375em) and (width <= 100em){
@@ -939,6 +988,9 @@ body {
   }
   .hero__body {
     padding-top: clamp( 1.25rem , 0.6760204081625rem  +  2.4489795918vw , 3.125rem );
+  }
+  .hero__title {
+    margin-bottom: clamp( 1rem , 0.92346938775625rem  +  0.3265306122vw , 1.25rem );
   }
   .hero__title-main {
     font-size: clamp( 1.5rem , 0.50510204081875rem  +  4.2448979592vw , 4.75rem );
@@ -965,14 +1017,30 @@ body {
     width: clamp( 5rem , 3.6607142857125rem  +  5.7142857143vw , 9.375rem );
   }
 }
+@media (max-width: 37.5em) and (width > 23.4375em) and (width <= 37.5em){
+  .hero__map-wrap {
+    width: clamp( 21.4375rem , -2.72916666666875rem  +  103.1111111111vw , 35.9375rem );
+  }
+}
 @media (width > 46.25em){
   .hero__body {
     min-height: 70svh;
   }
 }
 @media (max-width: 48.75em) and (width > 23.4375em) and (width <= 48.75em){
+  .hero__body {
+    padding-top: clamp( 5rem , 2.6851851851875rem  +  9.8765432099vw , 7.5rem );
+  }
+  .hero__hourse-gaucho {
+    width: clamp( 27.6875rem , 23.23148148148125rem  +  19.012345679vw , 32.5rem );
+  }
   .bonus-steps__chest {
     width: clamp( 22.5rem , 9.76851851851875rem  +  54.3209876543vw , 36.25rem );
+  }
+}
+@media (max-width: 48.75em) and (width > 23.4375em) and (width <= 100em){
+  .header__logo {
+    width: clamp( 14.375rem , 11.98341836735rem  +  10.2040816327vw , 22.1875rem );
   }
 }
 @media (width > 51.25em){
@@ -1106,6 +1174,9 @@ body {
   }
   .hero__body {
     padding-top: 3.125rem;
+  }
+  .hero__title {
+    margin-bottom: 1.25rem;
   }
   .hero__title-main {
     font-size: 4.75rem;
