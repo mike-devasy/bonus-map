@@ -188,8 +188,6 @@ body {
 .hero {
   position: relative;
   overflow: hidden;
-  min-height: 100svh;
-  height: 100%;
 }
 .hero::before {
   content: "";
@@ -211,6 +209,7 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: top left;
+  min-height: 100svh;
   height: 100%;
 }
 .hero__container {
