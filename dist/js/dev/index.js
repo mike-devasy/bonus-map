@@ -179,3 +179,26 @@ class DynamicAdapt {
 if (document.querySelector("[data-fls-dynamic]")) {
   window.addEventListener("load", () => window.flsDynamic = new DynamicAdapt());
 }
+const bonusCards = document.querySelectorAll("[data-flip-card]");
+const FLIP_DELAY = 4e3;
+const AUTO_FLIP_CLASS = "is-auto-flip";
+const startCardHintFlip = (card) => {
+  if (!card || card.dataset.flipStarted === "true") return;
+  card.dataset.flipStarted = "true";
+  card.classList.add(AUTO_FLIP_CLASS);
+  setInterval(() => {
+    if (card.classList.contains("is-done")) {
+      card.classList.remove("is-flipped");
+      card.classList.remove(AUTO_FLIP_CLASS);
+      return;
+    }
+    card.classList.toggle("is-flipped");
+  }, FLIP_DELAY);
+};
+bonusCards.forEach((card) => {
+  card.addEventListener("click", () => {
+    if (card.classList.contains(AUTO_FLIP_CLASS)) return;
+    card.classList.toggle("is-flipped");
+  });
+});
+startCardHintFlip(bonusCards[0]);

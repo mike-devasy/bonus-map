@@ -167,6 +167,15 @@
 		}
 		// justify-self: end;
 	}
+	&__map-image {
+		display: none;
+		width: 100%;
+		height: auto;
+	}
+
+	&__map-image.is-active {
+		display: block;
+	}
 	&__map--1 {
 		// width: min(100%, 920px);
 		position: relative;
@@ -594,12 +603,19 @@
 		}
 	}
 }
+.bonus-card.is-auto-flip {
+	cursor: default;
+}
+// .bonus-card.is-done .bonus-card__inner {
+//   transform: rotateY(0deg);
+// }
 .bonus-card {
 	position: relative;
 	z-index: 4;
 	overflow: hidden;
+	background: transparent;
 	border-radius: 20px;
-	background: linear-gradient(180deg, rgba(35, 38, 64, 0.96), rgba(16, 18, 34, 0.96));
+	// background: linear-gradient(180deg, rgba(35, 38, 64, 0.96), rgba(16, 18, 34, 0.96));
 	@media (max-width: toEm(1100)) {
 		grid-column: auto;
 		grid-row: auto;
@@ -613,11 +629,12 @@
 
 		scroll-snap-align: start;
 	}
+
 	&__head {
 		display: flex;
 		align-items: center;
 		gap: 12px;
-
+		background-color: var(--greyColor);
 		border-bottom: 1px solid var(--greyColor);
 		@include adaptiveValue("padding-inline", 74, 15, 0, $maxWidthContainer, 1100);
 		@include adaptiveValue("padding-block", 20, 10, 0, $maxWidthContainer, 1100);
@@ -680,9 +697,166 @@
 		}
 		dd {
 			margin: 0;
+			background-color: var(--darkVioletColor);
 			border-left: 1px solid var(--greyColor);
 		}
 	}
+}
+// flip-effect=================================================
+.bonus-card {
+	perspective: 1000px;
+	cursor: pointer;
+	background: transparent;
+	&.is-active {
+		overflow: visible;
+	}
+}
+
+.bonus-card__inner {
+	display: grid;
+	width: 100%;
+	height: 100%;
+	min-height: inherit;
+	transform-style: preserve-3d;
+	background: linear-gradient(180deg, rgba(35, 38, 64, 0.96), rgba(16, 18, 34, 0.96));
+
+	transition:
+		transform 0.7s ease,
+		box-shadow 0.3s ease;
+	border-radius: 20px;
+	border: 1px solid transparent;
+}
+.bonus-card.is-active .bonus-card__inner {
+	border-color: var(--orangeColor);
+	box-shadow: 0 0 18px rgba(255, 103, 0, 0.35);
+}
+.bonus-card.is-flipped .bonus-card__inner {
+	transform: rotateY(180deg);
+}
+
+.bonus-card__side {
+	grid-area: 1 / 1;
+	width: 100%;
+	min-height: 100%;
+	overflow: hidden;
+	border-radius: 20px;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+
+	background: linear-gradient(180deg, rgba(35, 38, 64, 0.96), rgba(16, 18, 34, 0.96));
+
+	border: 1px solid transparent;
+	transition:
+		border-color 0.3s ease,
+		box-shadow 0.3s ease;
+	border: none;
+}
+
+.bonus-card__side--front {
+	position: relative;
+	z-index: 2;
+	transform: rotateY(0deg);
+}
+
+.bonus-card__side--back {
+	position: absolute;
+	inset: 0;
+	transform: rotateY(180deg);
+}
+
+.bonus-card__info {
+	color: #fff;
+	@include adaptiveValue("font-size", 18, 16, 0, $maxWidthContainer, 1500);
+	line-height: 1.2;
+	display: flex;
+	flex-direction: column;
+	padding: 36px 34px;
+	@media (max-width: toEm(1500)) {
+		padding: 35px 25px;
+	}
+	@media (max-width: toEm(1350)) {
+		padding: 25px;
+		font-size: 14px;
+	}
+	@media (max-width: toEm(1220)) {
+		padding: 12px 25px;
+		font-size: 13px;
+	}
+	@media (max-width: toEm(1100)) {
+		padding: 10px 35px;
+		font-size: 14px;
+	}
+	@media (max-width: toEm(980)) {
+		padding: 10px 20px;
+		font-size: 14px;
+		text-align: left;
+	}
+	@media (max-width: toEm(880)) {
+		padding: 10px 15px;
+		font-size: 13px;
+		// padding: 10px;
+	}
+	@media (max-width: toEm(780)) {
+		padding: 10px 30px;
+		font-size: 14px;
+	}
+	@media (max-width: toEm(500)) {
+	}
+}
+
+.bonus-card__info p {
+	margin: 0;
+}
+
+.bonus-card__info p:not(:last-child) {
+	margin-bottom: 16px;
+	@media (max-width: toEm(1400)) {
+		margin-bottom: 8px;
+	}
+	@media (max-width: toEm(780)) {
+		margin-bottom: 4px;
+	}
+}
+
+.bonus-card__info-title {
+	color: var(--orangeColor);
+	font-weight: 800;
+}
+.bonus-card__overlay {
+	position: absolute;
+	inset: 0;
+	z-index: 10;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	border-radius: inherit;
+	background: rgba(21, 21, 38, 0.7);
+	pointer-events: none;
+	transition: all 0.3s;
+}
+
+.bonus-card.is-done .bonus-card__overlay {
+	display: flex;
+}
+.bonus-card.is-flipped.is-done {
+	.bonus-card__overlay {
+		background: rgba(21, 21, 38, 0.4);
+	}
+}
+.bonus-card__overlay-icon {
+	width: 64px;
+	height: 64px;
+	transition: opacity 0.5s;
+	.bonus-card.is-flipped.is-done &{
+	opacity: 0.25;
+	}
+}
+
+.bonus-card__overlay-icon img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	display: block;
 }
 .bonus-card--1 {
 	z-index: 5;
