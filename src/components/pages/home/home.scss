@@ -606,6 +606,20 @@
 .bonus-card.is-auto-flip {
 	cursor: default;
 }
+html.is-bonus-loading {
+	.bonus-card {
+		pointer-events: none;
+	}
+}
+html.is-bonus-error {
+	.bonus-card {
+		pointer-events: auto;
+	}
+}
+.bonus-card.is-done,
+.bonus-card.is-active {
+	cursor: pointer;
+}
 // .bonus-card.is-done .bonus-card__inner {
 //   transform: rotateY(0deg);
 // }
