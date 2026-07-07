@@ -372,6 +372,24 @@ body {
   transition: opacity 0.8s ease;
   background: linear-gradient(to right, #fc6200 0%, rgba(252, 98, 0, 0) 60%, #ffffff 72%, rgba(255, 255, 255, 0) 100%);
 }
+@keyframes heroDepositPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+@keyframes heroDepositGemGlow {
+  0%, 100% {
+    box-shadow: 0 0 2.625rem 0 rgba(252, 98, 0, 0.5), 0 0 0.875rem 0 rgba(252, 98, 0, 0.5), 0 0 0.375rem 0 rgba(252, 98, 0, 0.5);
+    filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+  }
+  50% {
+    box-shadow: 0 0 5.375rem 1.125rem rgba(252, 98, 0, 0.72), 0 0 2.375rem 0.625rem rgba(255, 219, 123, 0.78), 0 0 1.125rem 0.25rem rgba(255, 255, 255, 0.9), inset 0 0 1.125rem rgba(255, 255, 255, 0.35);
+    filter: drop-shadow(0 0 1.375rem rgba(255, 234, 177, 0.75));
+  }
+}
 .bonus-steps {
   position: relative;
   overflow: hidden;
@@ -1202,6 +1220,29 @@ html.is-bonus-error .bonus-card {
 @media (max-width: 37.5em) and (width > 23.4375em) and (width <= 37.5em){
   .hero__map-wrap {
     width: clamp( 21.4375rem , -2.72916666666875rem  +  103.1111111111vw , 35.9375rem );
+  }
+}
+@media (min-width: 48em) and (prefers-reduced-motion: reduce){
+  .hero > .button-wrapper {
+    animation: none;
+  }
+  .hero > .button-wrapper .button {
+    animation: none;
+  }
+}
+@media (min-width: 48em){
+  .hero > .button-wrapper {
+    position: fixed;
+    z-index: 10;
+    bottom: 5.75rem;
+    left: auto;
+    right: max(0.9375rem, (100vw - 98.125rem) / 2 + 0.9375rem);
+    transform: none;
+    transform-origin: center;
+    animation: heroDepositPulse 2.2s ease-in-out infinite;
+  }
+  .hero > .button-wrapper .button {
+    animation: heroDepositGemGlow 2.2s ease-in-out infinite;
   }
 }
 @media (width > 48.75em) and (width <= 98.125em){

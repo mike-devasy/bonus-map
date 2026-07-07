@@ -319,6 +319,62 @@
 		}
 	}
 }
+
+.hero > .button-wrapper {
+	@media (min-width: toEm(768)) {
+		position: fixed;
+		z-index: 10;
+		bottom: calc(5px + 87px);
+		left: auto;
+		right: max(15px, calc((100vw - #{$maxWidthContainer}px) / 2 + 15px));
+		transform: none;
+		transform-origin: center;
+		animation: heroDepositPulse 2.2s ease-in-out infinite;
+
+		.button {
+			animation: heroDepositGemGlow 2.2s ease-in-out infinite;
+		}
+
+		@media (prefers-reduced-motion: reduce) {
+			animation: none;
+
+			.button {
+				animation: none;
+			}
+		}
+	}
+}
+
+@keyframes heroDepositPulse {
+	0%,
+	100% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.1);
+	}
+}
+
+@keyframes heroDepositGemGlow {
+	0%,
+	100% {
+		box-shadow:
+			0 0 42px 0 rgba(252, 98, 0, 0.5),
+			0 0 14px 0 rgba(252, 98, 0, 0.5),
+			0 0 6px 0 rgba(252, 98, 0, 0.5);
+		filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
+	}
+
+	50% {
+		box-shadow:
+			0 0 86px 18px rgba(252, 98, 0, 0.72),
+			0 0 38px 10px rgba(255, 219, 123, 0.78),
+			0 0 18px 4px rgba(255, 255, 255, 0.9),
+			inset 0 0 18px rgba(255, 255, 255, 0.35);
+		filter: drop-shadow(0 0 22px rgba(255, 234, 177, 0.75));
+	}
+}
 // =========================================================================================
 
 .bonus-steps {
