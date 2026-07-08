@@ -180,7 +180,7 @@ if (document.querySelector("[data-fls-dynamic]")) {
   window.addEventListener("load", () => window.flsDynamic = new DynamicAdapt());
 }
 const MAX_DEPOSITS = 10;
-const CURRENT_BONUS_STEP = 10;
+const CURRENT_BONUS_STEP = 5;
 const bonusCards = document.querySelectorAll("[data-flip-card]");
 const bonusMap = document.querySelector("[data-bonus-map]");
 const bonusMapRoute = document.querySelector("[data-bonus-map-route]");
