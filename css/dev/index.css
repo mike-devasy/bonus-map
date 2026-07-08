@@ -188,7 +188,12 @@ body {
 .hero {
   position: relative;
   z-index: 2;
+  isolation: isolate;
   overflow: visible;
+  background-image: url("../assets/img/hero/hero-bg.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .hero::before {
   content: "";
@@ -196,12 +201,12 @@ body {
   z-index: 1;
   left: 50%;
   top: 0;
-  width: 140vw;
+  width: 227vw;
   aspect-ratio: 4365/1493;
-  transform: translate(-50%, -34%);
+  transform: translate(-50%, -48.7%);
   border-radius: 50%;
   pointer-events: none;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(39, 39, 63, 0.82) 0%, rgba(12, 12, 24, 0) 72%);
+  background: radial-gradient(50% 50% at 50% 50%, #1f1f30 59%, rgba(31, 31, 48, 0) 100%);
   mix-blend-mode: hard-light;
 }
 .hero__body {
@@ -209,10 +214,6 @@ body {
   z-index: 2;
   display: flex;
   align-items: stretch;
-  background-image: url("../assets/img/hero/hero-bg.webp");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
   min-height: 100vh;
   padding-bottom: clamp(1.625rem, 3.5vw, 3.375rem);
 }
@@ -248,15 +249,17 @@ body {
 }
 .hero__stones {
   position: absolute;
-  z-index: 2;
+  z-index: 6;
   left: clamp(15.25rem, 23vw, 26.875rem);
   bottom: clamp(4.875rem, 7vw, 8rem);
   width: clamp(6.25rem, 9vw, 10.625rem);
+  display: block;
   pointer-events: none;
   animation: chestLightsSoft 1.8s ease-in-out infinite;
   will-change: opacity, transform;
 }
 .hero__stones img {
+  display: block;
   width: 100%;
   height: auto;
 }
@@ -1060,8 +1063,6 @@ html.is-bonus-error .bonus-card {
     margin: 0 auto;
   }
   .hero {
-    background-image: url("../assets/img/hero/hero-bg.webp");
-    background-size: cover;
     background-position: center top;
   }
   .hero::before {
@@ -1069,7 +1070,6 @@ html.is-bonus-error .bonus-card {
     transform: translate(-50%, -18%);
   }
   .hero__body {
-    background-image: none;
     min-height: auto;
     padding-top: clamp(6rem, 24vw, 8rem);
     padding-bottom: 2.125rem;
@@ -1396,7 +1396,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (prefers-reduced-motion: reduce){
-  .hero__stones,
   .hero__map-pulse::after {
     animation: none;
   }
