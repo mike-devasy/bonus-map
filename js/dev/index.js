@@ -294,8 +294,10 @@ const setBonusProgress = (depositCount) => {
     const cardStep = Number.parseInt(card.dataset.depositCard, 10);
     const isDone = cardStep <= completedCount;
     const isNext = cardStep === completedCount + 1;
+    const isLocked = cardStep > completedCount + 1;
     card.classList.toggle("is-done", isDone);
     card.classList.toggle("is-active", isNext);
+    card.classList.toggle("is-locked", isLocked);
   });
   setActiveMapImage(completedCount);
   setNextMapPulse(completedCount);
@@ -320,7 +322,7 @@ const initBonusMap = async () => {
 };
 bonusCards.forEach((card) => {
   card.addEventListener("click", () => {
-    if (card.classList.contains(AUTO_FLIP_CLASS)) return;
+    if (card.classList.contains(AUTO_FLIP_CLASS) || card.classList.contains("is-locked")) return;
     card.classList.toggle("is-flipped");
   });
 });

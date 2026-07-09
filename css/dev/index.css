@@ -603,6 +603,9 @@ html.is-bonus-error .bonus-card {
 .bonus-card.is-active {
   cursor: pointer;
 }
+.bonus-card.is-locked {
+  cursor: default;
+}
 .bonus-card {
   position: relative;
   z-index: 4;
@@ -699,6 +702,11 @@ html.is-bonus-error .bonus-card {
   border-color: var(--orangeColor);
   box-shadow: 0 0 1.125rem rgba(255, 103, 0, 0.35);
 }
+.bonus-card.is-locked .bonus-card__inner {
+  border-color: #27273f;
+  filter: blur(0.1875rem);
+  opacity: 0.62;
+}
 .bonus-card.is-flipped .bonus-card__inner {
   transform: rotateY(180deg);
 }
@@ -756,11 +764,15 @@ html.is-bonus-error .bonus-card {
   pointer-events: none;
   transition: all 0.3s;
 }
-.bonus-card.is-done .bonus-card__overlay {
+.bonus-card.is-done .bonus-card__overlay,
+.bonus-card.is-locked .bonus-card__overlay {
   display: flex;
 }
 .bonus-card.is-flipped.is-done .bonus-card__overlay {
   background: rgba(21, 21, 38, 0.4);
+}
+.bonus-card.is-locked .bonus-card__overlay {
+  background: rgba(18, 18, 34, 0.42);
 }
 .bonus-card__overlay-icon {
   width: 4rem;
@@ -770,11 +782,19 @@ html.is-bonus-error .bonus-card {
 .bonus-card.is-flipped.is-done .bonus-card__overlay-icon {
   opacity: 0.25;
 }
+.bonus-card.is-locked .bonus-card__overlay-icon {
+  width: 6.5rem;
+  height: 6.5rem;
+  background: url("../assets/img/steps/lock-card.webp") center/contain no-repeat;
+}
 .bonus-card__overlay-icon img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   display: block;
+}
+.bonus-card.is-locked .bonus-card__overlay-icon img {
+  display: none;
 }
 .bonus-card--1 {
   z-index: 5;
