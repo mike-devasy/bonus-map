@@ -587,23 +587,23 @@ body {
 }
 .hero-bonus-card[data-current-step="1"] {
   left: 12.87%;
-  top: 47.8%;
+  top: 46.8%;
 }
 .hero-bonus-card[data-current-step="2"] {
   left: 30.47%;
-  top: 30.61%;
+  top: 29.61%;
 }
 .hero-bonus-card[data-current-step="3"] {
   left: 49.81%;
-  top: 30.81%;
+  top: 29.81%;
 }
 .hero-bonus-card[data-current-step="4"] {
   left: 68.61%;
-  top: 34.81%;
+  top: 33.81%;
 }
 .hero-bonus-card[data-current-step="5"] {
   left: 85.68%;
-  top: 41%;
+  top: 40%;
 }
 .hero-bonus-card[data-current-step="6"] {
   left: 79.14%;
@@ -615,15 +615,15 @@ body {
 }
 .hero-bonus-card[data-current-step="8"] {
   left: 41.67%;
-  top: 71.37%;
+  top: 70.6%;
 }
 .hero-bonus-card[data-current-step="9"] {
   left: 22.34%;
-  top: 74.17%;
+  top: 73.47%;
 }
 .hero-bonus-card[data-current-step="10"] {
-  left: 50.55%;
-  top: 86.98%;
+  left: 50%;
+  top: 84.98%;
 }
 .hero-bonus-card__step {
   display: grid;
