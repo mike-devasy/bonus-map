@@ -201,6 +201,10 @@ const currentBonusNumber = document.querySelector("[data-bonus-card-number]");
 const currentBonusValue = document.querySelector("[data-bonus-card-bonus]");
 const currentBonusSpins = document.querySelector("[data-bonus-card-spins]");
 const currentBonusDeposit = document.querySelector("[data-bonus-card-deposit]");
+const mobileCardsMedia = window.matchMedia("(max-width: 780px)");
+const mobileCtaMedia = window.matchMedia("(max-width: 480px)");
+const reducedMotionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
+const ctaReleaseTarget = document.querySelector(".bonus-steps__link");
 const FLIP_DELAY = 4e3;
 const AUTO_FLIP_CLASS = "is-auto-flip";
 let activeFlipInterval = null;
@@ -349,6 +353,18 @@ const updateStepCards = (completedCount) => {
     card.classList.toggle("is-locked", isLocked);
   });
 };
+const scrollActiveCardIntoView = () => {
+  if (!mobileCardsMedia.matches) return;
+  const activeCard = document.querySelector("[data-flip-card].is-active");
+  if (!activeCard) return;
+  requestAnimationFrame(() => {
+    activeCard.scrollIntoView({
+      behavior: reducedMotionMedia.matches ? "auto" : "smooth",
+      block: "nearest",
+      inline: "center"
+    });
+  });
+};
 const setBonusProgress = (depositCount) => {
   const completedCount = clampDepositCount(depositCount);
   const activeStep = getActiveStep(completedCount);
@@ -357,6 +373,7 @@ const setBonusProgress = (depositCount) => {
   updateMapPoints(completedCount);
   updateCurrentBonusCard(activeStep);
   updateStepCards(completedCount);
+  scrollActiveCardIntoView();
   if (completedCount < MAX_DEPOSITS) {
     startCardAutoFlip(bonusCards[completedCount]);
   }
@@ -404,5 +421,26 @@ bonusCards.forEach((card) => {
     card.classList.toggle("is-flipped");
   });
 });
+const initCtaRelease = () => {
+  if (!ctaReleaseTarget || !("IntersectionObserver" in window)) return;
+  let isReleaseTargetVisible = false;
+  const updateCtaRelease = () => {
+    document.documentElement.classList.toggle("is-cta-released", mobileCtaMedia.matches && isReleaseTargetVisible);
+  };
+  const observer = new IntersectionObserver(
+    ([entry]) => {
+      isReleaseTargetVisible = entry.isIntersecting;
+      updateCtaRelease();
+    },
+    {
+      root: null,
+      rootMargin: "0px 0px -35% 0px",
+      threshold: 0.1
+    }
+  );
+  observer.observe(ctaReleaseTarget);
+  mobileCtaMedia.addEventListener("change", updateCtaRelease);
+};
 window.setBonusMapStep = (depositCount) => setBonusProgress(depositCount);
+initCtaRelease();
 initBonusMap();

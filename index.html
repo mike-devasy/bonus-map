@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/logo-fav.svg">
 		<title>Bonus Map</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1783642566992"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1783642566992">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1783642566992">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1783702512218"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1783702512218">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1783702512218">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -33,17 +33,17 @@
 										<span class="hero__title-main">10 Bonus Steps</span>
 										<span class="hero__title-sub">AL ESTILO GAUCHO</span>
 									</h1>
-									<picture class="hero__image">
+									<div class="hero__image">
 										<picture>
 											<source media="(max-width: 600px)" srcset="./assets/img/hero/hero-image-600.webp" type="image/webp">
 											<img alt="Gaucho with horse and chest" src="./assets/img/hero/hero-image.webp">
 										</picture>
-									</picture>
-									<picture class="hero__stones">
+									</div>
+									<div class="hero__stones">
 										<picture>
 											<img alt="" src="./assets/img/hero/stones-glow.webp">
 										</picture>
-									</picture>
+									</div>
 								</div>
 								<div class="hero__map-panel">
 									<div class="hero__map-wrap" data-bonus-map="">
@@ -121,12 +121,12 @@
 							</h2>
 							<div class="bonus-steps__body">
 								<div class="bonus-steps__grid">
-									<picture class="bonus-steps__horse">
+									<div class="bonus-steps__horse">
 										<picture>
 											<source media="(max-width: 600px)" srcset="./assets/img/steps/01-600.webp" type="image/webp">
 											<img alt="Image" src="./assets/img/steps/01.webp">
 										</picture>
-									</picture>
+									</div>
 									<article class="bonus-card bonus-card--1 is-hint-flip" data-flip-card="" data-deposit-card="1">
 										<div class="bonus-card__inner">
 											<!-- Front side -->
@@ -571,12 +571,12 @@
 											</div>
 										</div>
 									</article>
-									<picture data-fls-dynamic=".bonus-steps__body, 780, 1" class="bonus-steps__chest">
+									<div data-fls-dynamic=".bonus-steps__body, 780, 1" class="bonus-steps__chest">
 										<picture>
 											<source media="(max-width: 600px)" srcset="./assets/img/steps/02-600.webp" type="image/webp">
 											<img alt="Image" src="./assets/img/steps/02.webp">
 										</picture>
-									</picture>
+									</div>
 									<article class="bonus-card bonus-card--7" data-flip-card="" data-deposit-card="7">
 										<div class="bonus-card__inner">
 											<!-- Front side -->
@@ -920,10 +920,9 @@
 									slot machine
 								</p>
 							</a>
-							<picture class="bonus-steps__image">
-								<source media="(min-width:600px)" srcset="./assets/img/steps/bottom-bg.webp">
-								<source media="(min-width:375px)" srcset="./assets/img/steps/bottom-bg-small.webp">
-								<img data-fls-image-ignore="" src="./assets/img/steps/bottom-bg.jpg" alt="Image">
+							<picture class="bonus-steps__image" data-fls-image-ignore="">
+								<source media="(max-width: 599px)" srcset="./assets/img/steps/bottom-bg-small.webp" data-fls-image-ignore="">
+								<img src="./assets/img/steps/bottom-bg.jpg" alt="Image" data-fls-image-ignore="">
 							</picture>
 						</div>
 					</section>
