@@ -5,18 +5,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/logo-fav.svg">
 		<title>Bonus Map</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1783588940897"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1783588940897">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1783588940897">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1783642566992"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1783642566992">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1783642566992">
 	</head>
 	<body>
 		<div class="wrapper">
 			<header data-fls-header="" data-fls-header-scroll="" class="header">
 				<div class="header__container">
 					<div class="header__logo">
-						<picture>
-							<img alt="" class="header__image" src="./assets/img/logo.webp">
-						</picture>
+						<img src="./assets/img/logo.svg" alt="" class="header__icon">
+						<span class="header__logo-text">
+							CUATRO
+							<span>BET</span>
+						</span>
 					</div>
 				</div>
 			</header>
@@ -44,49 +46,59 @@
 									</picture>
 								</div>
 								<div class="hero__map-panel">
-									<div class="hero__map-wrap">
+									<div class="hero__map-wrap" data-bonus-map="">
 										<div class="hero__map">
 											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/01-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--1" data-deposit-map="1" alt="Bonus map 1" src="./assets/img/hero/maps/01.webp">
+												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/map-base-600.webp" type="image/webp">
+												<source media="(max-width: 1200px)" srcset="./assets/img/hero/maps/map-base-1200.webp" type="image/webp">
+												<img class="hero__map-image" alt="Bonus map" src="./assets/img/hero/maps/map-base.webp">
 											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/02-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--2" data-deposit-map="2" alt="Bonus map 2" src="./assets/img/hero/maps/02.webp">
-											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/03-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--3" data-deposit-map="3" alt="Bonus map 3" src="./assets/img/hero/maps/03.webp">
-											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/04-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--4" data-deposit-map="4" alt="Bonus map 4" src="./assets/img/hero/maps/04.webp">
-											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/05-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--5" data-deposit-map="5" alt="Bonus map 5" src="./assets/img/hero/maps/05.webp">
-											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/06-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--6" data-deposit-map="6" alt="Bonus map 6" src="./assets/img/hero/maps/06.webp">
-											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/07-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--7" data-deposit-map="7" alt="Bonus map 7" src="./assets/img/hero/maps/07.webp">
-											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/08-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--8" data-deposit-map="8" alt="Bonus map 8" src="./assets/img/hero/maps/08.webp">
-											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/09-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--9" data-deposit-map="9" alt="Bonus map 9" src="./assets/img/hero/maps/09.webp">
-											</picture>
-											<picture>
-												<source media="(max-width: 600px)" srcset="./assets/img/hero/maps/10-600.webp" type="image/webp">
-												<img class="hero__map-image hero__map-image--10" data-deposit-map="10" alt="Bonus map 10" src="./assets/img/hero/maps/10.webp">
-											</picture>
-											<span class="hero__map-pulse is-hidden" data-map-pulse="" aria-hidden="true"></span>
+											<div class="hero__map-routes hero__map-routes--base" aria-hidden="true">
+												<img src="./assets/img/hero/routes-black/route-01.svg" class="hero__map-route hero__map-route--1" alt="">
+												<img src="./assets/img/hero/routes-black/route-02.svg" class="hero__map-route hero__map-route--2" alt="">
+												<img src="./assets/img/hero/routes-black/route-03.svg" class="hero__map-route hero__map-route--3" alt="">
+												<img src="./assets/img/hero/routes-black/route-04.svg" class="hero__map-route hero__map-route--4" alt="">
+												<img src="./assets/img/hero/routes-black/route-05.svg" class="hero__map-route hero__map-route--5" alt="">
+												<img src="./assets/img/hero/routes-black/route-06.svg" class="hero__map-route hero__map-route--6" alt="">
+												<img src="./assets/img/hero/routes-black/route-07.svg" class="hero__map-route hero__map-route--7" alt="">
+												<img src="./assets/img/hero/routes-black/route-08.svg" class="hero__map-route hero__map-route--8" alt="">
+												<img src="./assets/img/hero/routes-black/route-09.svg" class="hero__map-route hero__map-route--9" alt="">
+											</div>
+											<div class="hero__map-routes hero__map-routes--progress" aria-hidden="true">
+												<img src="./assets/img/hero/routes-orange/route-01.svg" class="hero__map-route hero__map-route--1" data-map-route="1" alt="">
+												<img src="./assets/img/hero/routes-orange/route-02.svg" class="hero__map-route hero__map-route--2" data-map-route="2" alt="">
+												<img src="./assets/img/hero/routes-orange/route-03.svg" class="hero__map-route hero__map-route--3" data-map-route="3" alt="">
+												<img src="./assets/img/hero/routes-orange/route-04.svg" class="hero__map-route hero__map-route--4" data-map-route="4" alt="">
+												<img src="./assets/img/hero/routes-orange/route-05.svg" class="hero__map-route hero__map-route--5" data-map-route="5" alt="">
+												<img src="./assets/img/hero/routes-orange/route-06.svg" class="hero__map-route hero__map-route--6" data-map-route="6" alt="">
+												<img src="./assets/img/hero/routes-orange/route-07.svg" class="hero__map-route hero__map-route--7" data-map-route="7" alt="">
+												<img src="./assets/img/hero/routes-orange/route-08.svg" class="hero__map-route hero__map-route--8" data-map-route="8" alt="">
+												<img src="./assets/img/hero/routes-orange/route-09.svg" class="hero__map-route hero__map-route--9" data-map-route="9" alt="">
+											</div>
+											<div class="hero__map-points" aria-hidden="true">
+												<span class="hero__map-point" data-map-point="1"></span>
+												<span class="hero__map-point" data-map-point="2"></span>
+												<span class="hero__map-point" data-map-point="3"></span>
+												<span class="hero__map-point" data-map-point="4"></span>
+												<span class="hero__map-point" data-map-point="5"></span>
+												<span class="hero__map-point" data-map-point="6"></span>
+												<span class="hero__map-point" data-map-point="7"></span>
+												<span class="hero__map-point" data-map-point="8"></span>
+												<span class="hero__map-point" data-map-point="9"></span>
+												<span class="hero__map-point" data-map-point="10"></span>
+											</div>
+											<article class="hero-bonus-card" data-current-bonus-card="" data-current-step="1">
+												<div class="hero-bonus-card__step" data-bonus-card-step="">
+													<img src="./assets/img/hero/deposit-numbers/01.svg" data-bonus-card-number="" alt="">
+												</div>
+												<div class="hero-bonus-card__label">GET BONUS</div>
+												<div class="hero-bonus-card__bonus" data-bonus-card-bonus="">150%</div>
+												<div class="hero-bonus-card__spins" data-bonus-card-spins="">+54 FS</div>
+												<div class="hero-bonus-card__deposit">
+													Minimum deposit of
+													<span data-bonus-card-deposit="">5000 ARS</span>
+												</div>
+											</article>
 										</div>
 									</div>
 									<div class="hero__button-wrapper button-wrapper">
@@ -185,9 +197,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -261,9 +271,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -337,9 +345,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -413,9 +419,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -489,9 +493,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -565,9 +567,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -647,9 +647,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -723,9 +721,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -799,9 +795,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>
@@ -875,9 +869,7 @@
 										</div>
 										<div class="bonus-card__overlay" aria-hidden="true">
 											<div class="bonus-card__overlay-icon">
-												<picture>
-													<img alt="check" src="./assets/img/steps/ok-sign.webp">
-												</picture>
+												<img src="./assets/img/steps/ok-sign.svg" alt="check">
 											</div>
 										</div>
 									</article>

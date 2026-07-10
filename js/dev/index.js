@@ -179,32 +179,55 @@ class DynamicAdapt {
 if (document.querySelector("[data-fls-dynamic]")) {
   window.addEventListener("load", () => window.flsDynamic = new DynamicAdapt());
 }
+const __vite_glob_0_0 = "" + new URL("../assets/img/hero/deposit-numbers/01.svg", import.meta.url).href;
+const __vite_glob_0_1 = "" + new URL("../assets/img/hero/deposit-numbers/02.svg", import.meta.url).href;
+const __vite_glob_0_2 = "" + new URL("../assets/img/hero/deposit-numbers/03.svg", import.meta.url).href;
+const __vite_glob_0_3 = "" + new URL("../assets/img/hero/deposit-numbers/04.svg", import.meta.url).href;
+const __vite_glob_0_4 = "" + new URL("../assets/img/hero/deposit-numbers/05.svg", import.meta.url).href;
+const __vite_glob_0_5 = "" + new URL("../assets/img/hero/deposit-numbers/06.svg", import.meta.url).href;
+const __vite_glob_0_6 = "" + new URL("../assets/img/hero/deposit-numbers/07.svg", import.meta.url).href;
+const __vite_glob_0_7 = "" + new URL("../assets/img/hero/deposit-numbers/08.svg", import.meta.url).href;
+const __vite_glob_0_8 = "" + new URL("../assets/img/hero/deposit-numbers/09.svg", import.meta.url).href;
+const __vite_glob_0_9 = "" + new URL("../assets/img/hero/deposit-numbers/10.svg", import.meta.url).href;
 const API_BASE_URL = "https://cbaiendpnt.site/apg/players";
 const AUTH_TOKEN = "cba_qiOzuJ4_BXUNQh4v_jpp4JPSFBudVgIgruA51rJla-M";
 const MAX_DEPOSITS = 10;
 const bonusCards = document.querySelectorAll("[data-flip-card]");
-const mapImages = document.querySelectorAll("[data-deposit-map]");
-const mapPulseMarker = document.querySelector("[data-map-pulse]");
+const mapRoutes = document.querySelectorAll("[data-map-route]");
+const mapPoints = document.querySelectorAll("[data-map-point]");
+const currentBonusCard = document.querySelector("[data-current-bonus-card]");
+const currentBonusStep = document.querySelector("[data-bonus-card-step]");
+const currentBonusNumber = document.querySelector("[data-bonus-card-number]");
+const currentBonusValue = document.querySelector("[data-bonus-card-bonus]");
+const currentBonusSpins = document.querySelector("[data-bonus-card-spins]");
+const currentBonusDeposit = document.querySelector("[data-bonus-card-deposit]");
 const FLIP_DELAY = 4e3;
 const AUTO_FLIP_CLASS = "is-auto-flip";
-const MAP_POINT_POSITIONS = {
-  1: { x: 12.6, y: 34.7 },
-  2: { x: 30.3, y: 17.9 },
-  3: { x: 49.7, y: 17.8 },
-  4: { x: 68.5, y: 21.5 },
-  5: { x: 85.7, y: 28.2 },
-  6: { x: 79.2, y: 61.4 },
-  7: { x: 60.3, y: 57.8 },
-  8: { x: 41.5, y: 58 },
-  9: { x: 22.1, y: 61.4 },
-  10: { x: 49.9, y: 74 }
-};
 let activeFlipInterval = null;
+let activeFlipCard = null;
+let isAutoFlipPaused = false;
+const bonusNumberImages = Array.from({ length: MAX_DEPOSITS }, (_, index) => {
+  const number = String(index + 1).padStart(2, "0");
+  return new URL((/* @__PURE__ */ Object.assign({ "../../../assets/img/hero/deposit-numbers/01.svg": __vite_glob_0_0, "../../../assets/img/hero/deposit-numbers/02.svg": __vite_glob_0_1, "../../../assets/img/hero/deposit-numbers/03.svg": __vite_glob_0_2, "../../../assets/img/hero/deposit-numbers/04.svg": __vite_glob_0_3, "../../../assets/img/hero/deposit-numbers/05.svg": __vite_glob_0_4, "../../../assets/img/hero/deposit-numbers/06.svg": __vite_glob_0_5, "../../../assets/img/hero/deposit-numbers/07.svg": __vite_glob_0_6, "../../../assets/img/hero/deposit-numbers/08.svg": __vite_glob_0_7, "../../../assets/img/hero/deposit-numbers/09.svg": __vite_glob_0_8, "../../../assets/img/hero/deposit-numbers/10.svg": __vite_glob_0_9 }))[`../../../assets/img/hero/deposit-numbers/${number}.svg`], import.meta.url).href;
+});
+const BONUS_DATA = [
+  { step: 1, bonus: "150%", spins: "+54 FS", deposit: "5000 ARS" },
+  { step: 2, bonus: "30%", spins: "+24 FS", deposit: "5000 ARS" },
+  { step: 3, bonus: "40%", spins: "+34 FS", deposit: "5000 ARS" },
+  { step: 4, bonus: "50%", spins: "+44 FS", deposit: "5000 ARS" },
+  { step: 5, bonus: "60%", spins: "+54 FS", deposit: "5000 ARS" },
+  { step: 6, bonus: "70%", spins: "+64 FS", deposit: "5000 ARS" },
+  { step: 7, bonus: "80%", spins: "+74 FS", deposit: "5000 ARS" },
+  { step: 8, bonus: "100%", spins: "+84 FS", deposit: "5000 ARS" },
+  { step: 9, bonus: "120%", spins: "+94 FS", deposit: "5000 ARS" },
+  { step: 10, bonus: "120%", spins: "+94 FS", deposit: "5000 ARS" }
+];
 const clampDepositCount = (value) => {
   const number = Number.parseInt(value, 10);
   if (Number.isNaN(number) || number < 0) return 0;
   return Math.min(number, MAX_DEPOSITS);
 };
+const getActiveStep = (completedCount) => Math.min(completedCount + 1, MAX_DEPOSITS);
 const parseDepositCountResponse = (text) => {
   const trimmedText = text.trim();
   if (!trimmedText) return 0;
@@ -247,63 +270,97 @@ const fetchDepositCount = async (playerId) => {
   const text = await response.text();
   return parseDepositCountResponse(text);
 };
+const updateCurrentBonusCard = (activeStep) => {
+  if (!currentBonusCard) return;
+  const bonus = BONUS_DATA[activeStep - 1];
+  if (!bonus) return;
+  currentBonusCard.dataset.currentStep = String(bonus.step);
+  if (currentBonusStep) currentBonusStep.setAttribute("aria-label", String(bonus.step));
+  if (currentBonusNumber) currentBonusNumber.src = bonusNumberImages[bonus.step - 1];
+  if (currentBonusValue) currentBonusValue.textContent = bonus.bonus;
+  if (currentBonusSpins) currentBonusSpins.textContent = bonus.spins;
+  if (currentBonusDeposit) currentBonusDeposit.textContent = bonus.deposit;
+};
+const updateMapRoutes = (completedCount) => {
+  mapRoutes.forEach((route) => {
+    const routeStep = Number.parseInt(route.dataset.mapRoute, 10);
+    route.classList.toggle("is-done", routeStep <= completedCount);
+  });
+};
+const updateMapPoints = (completedCount) => {
+  const currentStep = completedCount < MAX_DEPOSITS ? completedCount + 1 : null;
+  const nextStep = completedCount < MAX_DEPOSITS - 1 ? completedCount + 2 : null;
+  mapPoints.forEach((point) => {
+    const pointStep = Number.parseInt(point.dataset.mapPoint, 10);
+    const isDone = pointStep <= completedCount;
+    const isCurrent = pointStep === currentStep;
+    const isNext = pointStep === nextStep;
+    const isLocked = !isDone && !isCurrent && !isNext;
+    point.classList.toggle("is-done", isDone);
+    point.classList.toggle("is-checked", isDone);
+    point.classList.toggle("is-current", isCurrent);
+    point.classList.toggle("is-next", isNext);
+    point.classList.toggle("is-locked", isLocked);
+    point.classList.toggle("is-final-lock", completedCount === 8 && pointStep === MAX_DEPOSITS);
+  });
+};
 const stopAutoFlip = () => {
   if (activeFlipInterval) {
     clearInterval(activeFlipInterval);
     activeFlipInterval = null;
   }
+  activeFlipCard = null;
+  isAutoFlipPaused = false;
   bonusCards.forEach((card) => {
     card.classList.remove(AUTO_FLIP_CLASS, "is-flipped");
-    delete card.dataset.flipStarted;
   });
 };
-const startCardHintFlip = (card) => {
-  if (!card || card.dataset.flipStarted === "true") return;
-  stopAutoFlip();
-  card.dataset.flipStarted = "true";
-  card.classList.add(AUTO_FLIP_CLASS);
+const clearAutoFlipTimer = () => {
+  if (!activeFlipInterval) return;
+  clearInterval(activeFlipInterval);
+  activeFlipInterval = null;
+};
+const runAutoFlipTimer = () => {
+  if (!activeFlipCard || activeFlipInterval || isAutoFlipPaused) return;
   activeFlipInterval = setInterval(() => {
-    if (card.classList.contains("is-done")) {
-      card.classList.remove("is-flipped", AUTO_FLIP_CLASS);
+    if (!activeFlipCard.classList.contains("is-active") || activeFlipCard.classList.contains("is-done") || activeFlipCard.classList.contains("is-locked")) {
+      stopAutoFlip();
       return;
     }
-    card.classList.toggle("is-flipped");
+    activeFlipCard.classList.toggle("is-flipped");
   }, FLIP_DELAY);
 };
-const setActiveMapImage = (depositCount) => {
-  const activeStep = Math.max(depositCount, 1);
-  mapImages.forEach((image) => {
-    const imageStep = Number.parseInt(image.dataset.depositMap, 10);
-    image.classList.toggle("is-active", imageStep === activeStep);
-  });
+const startCardAutoFlip = (card) => {
+  if (!card || card.classList.contains("is-done") || card.classList.contains("is-locked")) return;
+  activeFlipCard = card;
+  card.classList.add(AUTO_FLIP_CLASS);
+  runAutoFlipTimer();
 };
-const setNextMapPulse = (depositCount) => {
-  if (!mapPulseMarker) return;
-  const activeStep = Math.max(depositCount, 1);
-  const nextStep = activeStep + 1;
-  const position = MAP_POINT_POSITIONS[nextStep];
-  mapPulseMarker.classList.toggle("is-hidden", !position);
-  if (!position) return;
-  mapPulseMarker.style.setProperty("--pulse-x", `${position.x}%`);
-  mapPulseMarker.style.setProperty("--pulse-y", `${position.y}%`);
-};
-const setBonusProgress = (depositCount) => {
-  const completedCount = clampDepositCount(depositCount);
-  stopAutoFlip();
+const updateStepCards = (completedCount) => {
+  const activeStep = getActiveStep(completedCount);
   bonusCards.forEach((card) => {
     const cardStep = Number.parseInt(card.dataset.depositCard, 10);
     const isDone = cardStep <= completedCount;
-    const isNext = cardStep === completedCount + 1;
-    const isLocked = cardStep > completedCount + 1;
+    const isActive = cardStep === activeStep;
+    const isLocked = cardStep > activeStep;
+    card.classList.remove("is-flipped");
     card.classList.toggle("is-done", isDone);
-    card.classList.toggle("is-active", isNext);
+    card.classList.toggle("is-active", isActive);
     card.classList.toggle("is-locked", isLocked);
   });
-  setActiveMapImage(completedCount);
-  setNextMapPulse(completedCount);
+};
+const setBonusProgress = (depositCount) => {
+  const completedCount = clampDepositCount(depositCount);
+  const activeStep = getActiveStep(completedCount);
+  stopAutoFlip();
+  updateMapRoutes(completedCount);
+  updateMapPoints(completedCount);
+  updateCurrentBonusCard(activeStep);
+  updateStepCards(completedCount);
   if (completedCount < MAX_DEPOSITS) {
-    startCardHintFlip(bonusCards[completedCount]);
+    startCardAutoFlip(bonusCards[completedCount]);
   }
+  return completedCount;
 };
 const initBonusMap = async () => {
   const playerId = getPlayerIdFromUrl();
@@ -321,14 +378,31 @@ const initBonusMap = async () => {
   }
 };
 bonusCards.forEach((card) => {
+  card.addEventListener("mouseenter", () => {
+    if (!card.classList.contains(AUTO_FLIP_CLASS)) return;
+    isAutoFlipPaused = true;
+    clearAutoFlipTimer();
+  });
+  card.addEventListener("mouseleave", () => {
+    if (!card.classList.contains(AUTO_FLIP_CLASS)) return;
+    isAutoFlipPaused = false;
+    runAutoFlipTimer();
+  });
+  card.addEventListener("focusin", () => {
+    if (!card.classList.contains(AUTO_FLIP_CLASS)) return;
+    isAutoFlipPaused = true;
+    clearAutoFlipTimer();
+  });
+  card.addEventListener("focusout", () => {
+    if (!card.classList.contains(AUTO_FLIP_CLASS)) return;
+    isAutoFlipPaused = false;
+    runAutoFlipTimer();
+  });
   card.addEventListener("click", () => {
-    if (card.classList.contains(AUTO_FLIP_CLASS) || card.classList.contains("is-locked")) return;
+    if (card.classList.contains(AUTO_FLIP_CLASS)) return;
+    if (card.classList.contains("is-locked")) return;
     card.classList.toggle("is-flipped");
   });
 });
-window.setBonusMapStep = (depositCount) => {
-  const completedCount = clampDepositCount(depositCount);
-  setBonusProgress(completedCount);
-  return completedCount;
-};
+window.setBonusMapStep = (depositCount) => setBonusProgress(depositCount);
 initBonusMap();
