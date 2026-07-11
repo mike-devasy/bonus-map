@@ -1,22 +1,77 @@
 .header {
 	z-index: 100;
-position: fixed;
-width: 100%;
-top: 0;
-left: 0;
-		@include adaptiveValue("padding-block", 50, 20);
-    &__container {
-			@include adaptiveValue("padding-inline", 160, 15);
-    }
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	@include adaptiveValue("padding-block", 50, 20);
 
-    &__logo {
-			@media (max-width: toEm(780)){
-				  @include adaptiveValue("width", 355, 230);
-					margin: 0 auto;
-			}
-    }
+	@media (width > toEm(780)) and (height <= toEm(650)) {
+		padding-block: 20px;
+	}
 
-    &__image {
-    }
+	&__container {
+		// @include adaptiveValue("padding-inline", 160, 15);
+
+		@media (max-width: toEm(768)) {
+			display: flex;
+			justify-content: center;
+		}
+	}
+
+	&__logo {
+		display: inline-flex;
+		align-items: center;
+		// justify-content:space-between;
+		gap: clamp(7px, 0.8vw, 10px);
+		width: min(100%, 300px);
+				@include adaptiveValue("padding-left", 150, 0, 0, 1100, 768);
+
+
+		@media (max-width: toEm(768)) {
+			justify-content: center;
+			width: fit-content;
+			max-width: 100%;
+			margin: 0 auto;
+		}
+
+		@media (width > toEm(780)) and (height <= toEm(650)) {
+			width: min(100%, 250px);
+			padding-left: 64px;
+		}
+	}
+
+	&__icon {
+		flex: 0 0 auto;
+		width: clamp(42px, 2.5vw, 62px);
+		width: 42px;
+		height: auto;
+
+		@media (width > toEm(780)) and (height <= toEm(650)) {
+			width: 34px;
+		}
+	}
+
+	&__logo-text {
+		flex: 0 1 auto;
+		min-width: 0;
+		max-width: calc(300px - 52px);
+		font-family: var(--secondaryFont);
+		font-size: clamp(28px, 1.9vw, 38px);
+		font-style: italic;
+		font-weight: 900;
+		line-height: 1;
+		letter-spacing: -0.03em;
+		color: #ffffff;
+		white-space: nowrap;
+
+		span {
+			color: var(--orangeColor);
+		}
+
+		@media (width > toEm(780)) and (height <= toEm(650)) {
+			max-width: calc(250px - 44px);
+			font-size: 30px;
+		}
+	}
 }
-
