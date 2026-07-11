@@ -348,6 +348,28 @@ body {
   position: relative;
   z-index: 1;
   width: 100%;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.hero__offer {
+  position: absolute;
+  z-index: 10;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+.hero__map-wrap.is-offer-visible .hero__map {
+  opacity: 0;
+  visibility: hidden;
+}
+.hero__map-wrap.is-offer-visible .hero__offer {
+  opacity: 1;
+  visibility: visible;
 }
 .hero__map-image {
   position: relative;
@@ -1373,11 +1395,6 @@ html.is-bonus-error .bonus-card {
     margin-top: 0;
     margin-inline: auto;
   }
-  .hero__button-wrapper {
-    left: 50%;
-    top: min(var(--hero-body-top-space) + 7rem + 1rem + min(31.6875rem, 66.7vw - 1.25rem) + 1.875rem, 100svh - 7.25rem);
-    width: min(32.5rem, 100vw - 1.875rem);
-  }
   .hero-bonus-card {
     padding: 0.625rem 0.5rem 0.75rem;
     border-radius: 1.25rem;
@@ -1504,9 +1521,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (max-width: 48.75em) and (width <= 23.4375em){
-  .hero__button-wrapper .button {
-    font-size: 1.25rem;
-  }
   .bonus-steps__chest {
     width: 22.5rem;
   }
@@ -1534,15 +1548,6 @@ html.is-bonus-error .bonus-card {
     left: 58%;
     bottom: 16%;
     width: 22%;
-  }
-  .hero__button-wrapper {
-    z-index: 120;
-    top: auto;
-    bottom: max(1.5625rem, env(safe-area-inset-bottom));
-  }
-  .hero__button-wrapper .button {
-    width: 100%;
-    padding-inline: 1.25rem;
   }
   .button-wrapper {
     left: auto;
@@ -1620,13 +1625,15 @@ html.is-bonus-error .bonus-card {
   .hero__title-sub {
     font-size: 1.25rem;
   }
-  .hero__map-wrap {
-    width: 22.5rem;
-  }
 }
 @media (max-width: 48em) and (width <= 23.4375em){
   .hero__title-main {
     font-size: 1.8125rem;
+  }
+}
+@media (max-width: 48em) and (width <= 21.875em){
+  .hero__map-wrap {
+    width: 22.5rem;
   }
 }
 @media (max-width: 48em){
@@ -1670,6 +1677,7 @@ html.is-bonus-error .bonus-card {
     overflow: visible;
   }
   .hero__map-wrap {
+    padding-inline: 0.625rem;
     min-width: 0;
     max-width: 100%;
   }
@@ -1693,12 +1701,14 @@ html.is-bonus-error .bonus-card {
     font-size: 0.425rem;
   }
 }
-@media (max-width: 30em) and (max-height: 46.25em){
-  .hero__button-wrapper {
-    top: 22.5rem;
+@media (max-width: 30em) and (width <= 23.4375em){
+  .hero__button-wrapper.button-wrapper .button {
+    font-size: 1.25rem;
   }
+}
+@media (max-width: 30em) and (max-height: 46.25em){
   .hero__button-wrapper.button-wrapper {
-    top: 25.625rem;
+    top: 25.3125rem;
   }
   html.is-cta-released .hero__button-wrapper.button-wrapper {
     top: calc(100svh - 12.5rem);
@@ -1728,17 +1738,8 @@ html.is-bonus-error .bonus-card {
   .hero__stones {
     display: none;
   }
-  .hero__button-wrapper {
-    position: fixed;
-    z-index: 120;
-    left: 50%;
-    right: auto;
-    top: 26.875rem;
-    bottom: auto;
-    transform: translateX(-50%);
-    width: min(21.875rem, 100vw - 1.875rem);
-    max-width: calc(100vw - 1.875rem);
-    margin: 0;
+  .hero__map-wrap {
+    padding-inline: 0rem;
   }
   .hero-bonus-card {
     width: 22%;
@@ -1762,17 +1763,19 @@ html.is-bonus-error .bonus-card {
     line-height: 1.08;
   }
   .hero__button-wrapper.button-wrapper {
-    position: fixed;
     z-index: 120;
     left: 50%;
     right: auto;
-    top: 26.5625rem;
+    top: 25.9375rem;
     bottom: auto;
     transform: translateX(-50%);
-    width: min(21.875rem, 100vw - 1.875rem);
-    max-width: calc(100vw - 1.875rem);
+    max-width: calc(100vw - 2.5rem);
     margin: 0;
     transition: top 0.35s ease;
+  }
+  .hero__button-wrapper.button-wrapper .button {
+    width: 100%;
+    padding-inline: 1.25rem;
   }
   html.is-cta-released .hero__button-wrapper.button-wrapper {
     top: calc(100svh - 15.625rem);
@@ -1811,11 +1814,6 @@ html.is-bonus-error .bonus-card {
   }
   .bonus-card__number {
     width: 5rem;
-  }
-}
-@media (max-width: 23.4375em){
-  .hero__map-wrap {
-    width: min(21.5625rem, 100%);
   }
 }
 @media (width > 48.75em) and (height <= 40.625em){
@@ -1954,11 +1952,6 @@ html.is-bonus-error .bonus-card {
     width: 45rem;
   }
 }
-@media (max-width: 48.75em) and (width > 100em){
-  .hero__button-wrapper .button {
-    font-size: 1.75rem;
-  }
-}
 @media (width > 48.75em) and (height <= 47.5em){
   .hero {
     --hero-top-space: 1.125rem;
@@ -1992,6 +1985,16 @@ html.is-bonus-error .bonus-card {
   }
   .hero__map-wrap {
     width: min(100%, 40rem);
+  }
+}
+@media (max-width: 30em) and (width > 100em){
+  .hero__button-wrapper.button-wrapper .button {
+    font-size: 1.75rem;
+  }
+}
+@media (max-width: 30em) and (min-height: 55.625em){
+  .hero__button-wrapper.button-wrapper {
+    top: 27.8125rem;
   }
 }
 @media (max-width: 68.75em) and (width > 50em){
@@ -2036,6 +2039,11 @@ html.is-bonus-error .bonus-card {
 @media (min-width: 30em){
   .hero-bonus-card {
     row-gap: 0.125rem;
+  }
+}
+@media (max-width: 30em) and (width > 23.4375em) and (width <= 100em){
+  .hero__button-wrapper.button-wrapper .button {
+    font-size: clamp( 1.25rem , 1.0969387755125rem  +  0.6530612245vw , 1.75rem );
   }
 }
 @media (min-width: 36.25125em) and (max-width: 68.75em){
@@ -2095,13 +2103,15 @@ html.is-bonus-error .bonus-card {
   .hero__title-sub {
     font-size: clamp( 1.25rem , 0.45488165680625rem  +  2.9585798817vw , 1.875rem );
   }
-  .hero__map-wrap {
-    width: clamp( 22.5rem , -6.12426035503125rem  +  106.5088757396vw , 45rem );
-  }
 }
 @media (max-width: 48em) and (width > 23.4375em) and (width <= 48em){
   .hero__title-main {
     font-size: clamp( 1.8125rem , 1.3950381679375rem  +  1.7811704835vw , 2.25rem );
+  }
+}
+@media (max-width: 48em) and (width > 21.875em) and (width <= 48em){
+  .hero__map-wrap {
+    width: clamp( 22.5rem , 3.6602870813375rem  +  86.1244019139vw , 45rem );
   }
 }
 @media (width > 48.75em) and (width <= 98.125em){
@@ -2121,11 +2131,6 @@ html.is-bonus-error .bonus-card {
 @media (max-width: 48.75em) and (width > 23.4375em) and (width <= 48.75em){
   .bonus-steps__chest {
     width: clamp( 22.5rem , 9.76851851851875rem  +  54.3209876543vw , 36.25rem );
-  }
-}
-@media (max-width: 48.75em) and (width > 23.4375em) and (width <= 100em){
-  .hero__button-wrapper .button {
-    font-size: clamp( 1.25rem , 1.0969387755125rem  +  0.6530612245vw , 1.75rem );
   }
 }
 @media (width > 68.75em) and (width <= 98.125em){
