@@ -359,13 +359,14 @@ const updateStepCards = (completedCount) => {
 };
 const scrollActiveCardIntoView = () => {
   if (!mobileCardsMedia.matches) return;
-  const activeCard = document.querySelector("[data-flip-card].is-active");
-  if (!activeCard) return;
+  const grid = document.querySelector(".bonus-steps__grid");
+  const activeCard = grid?.querySelector("[data-flip-card].is-active");
+  if (!grid || !activeCard) return;
   requestAnimationFrame(() => {
-    activeCard.scrollIntoView({
-      behavior: reducedMotionMedia.matches ? "auto" : "smooth",
-      block: "nearest",
-      inline: "center"
+    const targetLeft = activeCard.offsetLeft - (grid.clientWidth - activeCard.offsetWidth) / 2;
+    grid.scrollTo({
+      left: Math.max(0, targetLeft),
+      behavior: reducedMotionMedia.matches ? "auto" : "smooth"
     });
   });
 };
