@@ -852,8 +852,11 @@ body {
 }
 .bonus-steps__image {
   position: relative;
+  display: block;
+  line-height: 0;
 }
 .bonus-steps__image img {
+  display: block;
   width: 100%;
   height: auto;
   position: relative;
@@ -1763,7 +1766,7 @@ html.is-bonus-error .bonus-card {
     z-index: 120;
     left: 50%;
     right: auto;
-    top: 26.875rem;
+    top: 26.5625rem;
     bottom: auto;
     transform: translateX(-50%);
     width: min(21.875rem, 100vw - 1.875rem);
