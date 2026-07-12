@@ -203,7 +203,6 @@ const currentBonusCard = document.querySelector("[data-current-bonus-card]");
 const heroMapWrap = document.querySelector("[data-bonus-map]");
 const heroOffer = document.querySelector("[data-hero-offer]");
 const mobileCardsMedia = window.matchMedia("(max-width: 780px)");
-const mobileCtaMedia = window.matchMedia("(max-width: 480px)");
 const reducedMotionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
 const ctaReleaseTarget = document.querySelector(".bonus-steps__link");
 const currentBonusElements = {
@@ -409,7 +408,7 @@ const initCtaRelease = () => {
   const update = () => {
     document.documentElement.classList.toggle(
       "is-cta-released",
-      mobileCtaMedia.matches && isTargetVisible
+      isTargetVisible
     );
   };
   const observer = new IntersectionObserver(
@@ -417,10 +416,9 @@ const initCtaRelease = () => {
       isTargetVisible = entry.isIntersecting;
       update();
     },
-    { rootMargin: "0px 0px -35%", threshold: 0.1 }
+    { rootMargin: "0px", threshold: 0.01 }
   );
   observer.observe(ctaReleaseTarget);
-  mobileCtaMedia.addEventListener("change", update);
 };
 const initHeroViewRotation = () => {
   if (!heroMapWrap || !heroOffer) return;

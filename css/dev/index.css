@@ -1553,12 +1553,6 @@ html.is-bonus-error .bonus-card {
     left: auto;
     margin: 0 auto;
   }
-  .hero__button-wrapper.button-wrapper {
-    z-index: 120;
-    left: 50%;
-    top: auto;
-    bottom: max(5.3125rem, env(safe-area-inset-bottom));
-  }
   .bonus-steps__grid {
     display: flex;
     gap: 0.75rem;
@@ -1690,6 +1684,14 @@ html.is-bonus-error .bonus-card {
     line-height: 1.1;
   }
 }
+@media (max-width: 47.9375em){
+  .hero__button-wrapper.button-wrapper {
+    z-index: 120;
+    left: 50%;
+    top: auto;
+    bottom: max(5.3125rem, env(safe-area-inset-bottom));
+  }
+}
 @media (max-width: 37.5em){
   .hero-bonus-card__label {
     font-size: 0.5625rem;
@@ -1707,9 +1709,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (max-width: 30em) and (max-height: 46.25em){
-  .hero__button-wrapper.button-wrapper {
-    top: 25.3125rem;
-  }
   html.is-cta-released .hero__button-wrapper.button-wrapper {
     top: calc(100svh - 12.5rem);
   }
@@ -1766,7 +1765,7 @@ html.is-bonus-error .bonus-card {
     z-index: 120;
     left: 50%;
     right: auto;
-    top: 25.9375rem;
+    top: 26.5625rem;
     bottom: auto;
     transform: translateX(-50%);
     max-width: calc(100vw - 2.5rem);
@@ -1885,7 +1884,11 @@ html.is-bonus-error .bonus-card {
     font-size: 1.625rem;
   }
   .hero__button-wrapper.button-wrapper {
-    top: calc(100svh - 5.875rem);
+    top: calc(100svh - 5.25rem);
+  }
+  html.is-cta-released .hero__button-wrapper.button-wrapper {
+    top: calc(100svh - 9.375rem);
+    bottom: auto;
   }
 }
 @media (max-width: 75em) and (min-height: 62.5em){
@@ -1992,9 +1995,24 @@ html.is-bonus-error .bonus-card {
     font-size: 1.75rem;
   }
 }
-@media (max-width: 30em) and (min-height: 55.625em){
+@media (max-width: 30em) and (min-height: 40.62625em) and (max-height: 46.25em){
   .hero__button-wrapper.button-wrapper {
-    top: 27.8125rem;
+    top: 25.9375rem;
+  }
+}
+@media (max-width: 30em) and (min-height: 46.25125em) and (max-height: 55.62375em){
+  .hero__button-wrapper.button-wrapper {
+    top: 26.5625rem;
+  }
+}
+@media (max-width: 30em) and (min-height: 55.625em) and (max-height: 58.12375em){
+  .hero__button-wrapper.button-wrapper {
+    top: 27.5rem;
+  }
+}
+@media (max-width: 30em) and (min-height: 58.125em){
+  .hero__button-wrapper.button-wrapper {
+    top: 28.4375rem;
   }
 }
 @media (max-width: 68.75em) and (width > 50em){
