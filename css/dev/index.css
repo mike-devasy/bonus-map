@@ -1762,7 +1762,7 @@ html.is-bonus-error .bonus-card {
     z-index: 120;
     left: 50%;
     right: auto;
-    top: var(--hero-cta-initial-top, 26.5625rem);
+    top: var(--hero-cta-initial-top, 26.875rem);
     bottom: auto;
     transform: translateX(-50%);
     max-width: calc(100vw - 2.5rem);
