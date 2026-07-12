@@ -1714,9 +1714,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (max-width: 30em) and (max-height: 40.625em){
-  .hero__button-wrapper.button-wrapper {
-    top: 22.5rem;
-  }
   html.is-cta-released .hero__button-wrapper.button-wrapper {
     top: calc(100svh - 7.5rem);
   }
@@ -1765,10 +1762,11 @@ html.is-bonus-error .bonus-card {
     z-index: 120;
     left: 50%;
     right: auto;
-    top: 26.5625rem;
+    top: var(--hero-cta-initial-top, 26.5625rem);
     bottom: auto;
     transform: translateX(-50%);
     max-width: calc(100vw - 2.5rem);
+    padding-bottom: env(safe-area-inset-bottom);
     margin: 0;
     transition: top 0.35s ease;
   }
@@ -1993,26 +1991,6 @@ html.is-bonus-error .bonus-card {
 @media (max-width: 30em) and (width > 100em){
   .hero__button-wrapper.button-wrapper .button {
     font-size: 1.75rem;
-  }
-}
-@media (max-width: 30em) and (min-height: 40.62625em) and (max-height: 46.25em){
-  .hero__button-wrapper.button-wrapper {
-    top: 25.9375rem;
-  }
-}
-@media (max-width: 30em) and (min-height: 46.25125em) and (max-height: 55.62375em){
-  .hero__button-wrapper.button-wrapper {
-    top: 26.5625rem;
-  }
-}
-@media (max-width: 30em) and (min-height: 55.625em) and (max-height: 58.12375em){
-  .hero__button-wrapper.button-wrapper {
-    top: 27.5rem;
-  }
-}
-@media (max-width: 30em) and (min-height: 58.125em){
-  .hero__button-wrapper.button-wrapper {
-    top: 28.4375rem;
   }
 }
 @media (max-width: 68.75em) and (width > 50em){

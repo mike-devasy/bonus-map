@@ -202,7 +202,9 @@ const mapPoints = document.querySelectorAll("[data-map-point]");
 const currentBonusCard = document.querySelector("[data-current-bonus-card]");
 const heroMapWrap = document.querySelector("[data-bonus-map]");
 const heroOffer = document.querySelector("[data-hero-offer]");
+const heroCtaWrapper = document.querySelector(".hero__button-wrapper");
 const mobileCardsMedia = window.matchMedia("(max-width: 780px)");
+const mobileCtaPositionMedia = window.matchMedia("(max-width: 480px)");
 const reducedMotionMedia = window.matchMedia("(prefers-reduced-motion: reduce)");
 const ctaReleaseTarget = document.querySelector(".bonus-steps__link");
 const currentBonusElements = {
@@ -420,6 +422,34 @@ const initCtaRelease = () => {
   );
   observer.observe(ctaReleaseTarget);
 };
+const initMobileCtaPosition = () => {
+  if (!heroMapWrap || !heroCtaWrapper) return;
+  const gap = 16;
+  const updatePosition = () => {
+    if (!mobileCtaPositionMedia.matches) return;
+    const viewport = window.visualViewport;
+    const viewportTop = viewport?.offsetTop ?? 0;
+    const viewportHeight = viewport?.height ?? window.innerHeight;
+    const viewportBottom = viewportTop + viewportHeight;
+    const desiredTop = heroMapWrap.getBoundingClientRect().bottom + gap;
+    const maxTop = viewportBottom - heroCtaWrapper.offsetHeight - gap;
+    const targetTop = Math.max(viewportTop + gap, Math.min(desiredTop, maxTop));
+    heroCtaWrapper.style.setProperty(
+      "--hero-cta-initial-top",
+      `${targetTop}px`
+    );
+  };
+  const updatePositionAtPageTop = () => {
+    if (window.scrollY <= 1) updatePosition();
+  };
+  window.addEventListener("load", updatePosition, { once: true });
+  window.addEventListener("orientationchange", updatePosition);
+  window.visualViewport?.addEventListener("resize", updatePositionAtPageTop);
+  if ("ResizeObserver" in window) {
+    const mapResizeObserver = new ResizeObserver(updatePositionAtPageTop);
+    mapResizeObserver.observe(heroMapWrap);
+  }
+};
 const initHeroViewRotation = () => {
   if (!heroMapWrap || !heroOffer) return;
   const showOffer = (isVisible) => {
@@ -450,5 +480,6 @@ const initBonusMap = async () => {
 window.setBonusMapStep = setBonusProgress;
 initCardEvents();
 initCtaRelease();
+initMobileCtaPosition();
 initHeroViewRotation();
 initBonusMap();
