@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/logo-fav.svg">
 		<title>Bonus Map</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1783940571805"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1783940571805">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1783940571805">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1783945231993"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1783945231993">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1783945231993">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -900,13 +900,11 @@
 									slot machine
 								</p>
 							</a>
-							<div class="bonus-steps__image">
-								<picture>
-									<source media="(max-width: 600px)" srcset="./assets/img/steps/bottom-bg-600.webp" type="image/webp">
-									<source media="(max-width: 1200px)" srcset="./assets/img/steps/bottom-bg-1200.webp" type="image/webp">
-									<img alt="" src="./assets/img/steps/bottom-bg.webp">
-								</picture>
-							</div>
+							<picture class="bonus-steps__image">
+								<source media="(max-width: 480px)" srcset="./assets/img/steps/bottom-bg-small.webp">
+								<source media="(max-width: 1100px)" srcset="./assets/img/steps/bottom-bg-tablet.webp">
+								<img alt="" src="./assets/img/steps/bottom-bg.webp">
+							</picture>
 						</div>
 					</section>
 				</main>
