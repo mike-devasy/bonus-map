@@ -708,6 +708,7 @@ body {
   padding: 0.6875rem;
   z-index: 4;
   position: relative;
+  box-sizing: border-box;
   border-radius: 1.1875rem;
   display: inline-flex;
   justify-content: center;
@@ -741,8 +742,11 @@ body {
   top: min(var(--hero-top-space) + var(--hero-map-offset) + min(40.8125rem, 40.7vw) + 1.875rem, 100svh - 9.75rem);
   bottom: auto;
   transform: translateX(-50%);
+  box-sizing: border-box;
 }
 .hero__button-wrapper.button-wrapper .button {
+  display: block;
+  box-sizing: border-box;
   animation: heroDepositGemGlow 1.8s ease-in-out infinite;
 }
 @keyframes heroDepositGemGlow {
@@ -1316,9 +1320,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (max-width: 68.75em) and (width <= 48em){
-  .hero__title {
-    padding-left: 6.25e-8rem;
-  }
   .bonus-steps__horse {
     width: 23.75rem;
   }
@@ -1340,6 +1341,16 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (max-width: 68.75em){
+  .header__container {
+    display: flex;
+    justify-content: center;
+  }
+  .header__logo {
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+  }
   .hero {
     --hero-title-offset: 1.875rem;
     --hero-content-height: 32.5rem;
@@ -1347,7 +1358,7 @@ html.is-bonus-error .bonus-card {
     --hero-body-top-space: clamp(5rem, 3.706875rem + 5.517vw, 7.5rem);
   }
   .hero__body {
-    padding-top: var(--hero-body-top-space);
+    padding-top: 5rem;
   }
   .hero__container {
     grid-template-columns: 1fr;
@@ -1384,13 +1395,31 @@ html.is-bonus-error .bonus-card {
   }
   .hero__title {
     order: 1;
-    justify-self: start;
+    justify-self: center;
+    align-items: center;
+    width: 100%;
+    margin-inline: auto;
+    padding-left: 0;
+    text-align: center;
   }
   .hero__title-main {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
     font-size: clamp(2.25rem, 4.7vw, 2.625rem);
+    text-align: center;
+  }
+  .hero__title-sub {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
   }
   .hero__map-panel {
     order: 2;
+    justify-self: center;
     max-width: min(100%, 47.5rem);
     margin-top: 0;
     margin-inline: auto;
@@ -1610,11 +1639,6 @@ html.is-bonus-error .bonus-card {
     margin-bottom: 0.25rem;
   }
 }
-@media (width <= 48em){
-  .header__logo {
-    padding-left: 6.25e-8rem;
-  }
-}
 @media (max-width: 48em) and (width <= 26.875em){
   .hero__title-sub {
     font-size: 1.25rem;
@@ -1631,37 +1655,13 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (max-width: 48em){
-  .header__container {
-    display: flex;
-    justify-content: center;
-  }
-  .header__logo {
-    justify-content: center;
-    width: fit-content;
-    max-width: 100%;
-    margin: 0 auto;
-  }
   .hero__container {
     box-sizing: border-box;
     padding-inline: 0.9375rem;
     justify-content: center;
   }
   .hero__title {
-    align-items: center;
-    width: min(100%, 100vw - 1.875rem);
     min-width: 0;
-    text-align: center;
-  }
-  .hero__title-main {
-    display: block;
-    width: auto;
-    max-width: 100%;
-  }
-  .hero__title-sub {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    text-align: center;
   }
   .hero__map-panel {
     width: 100%;
@@ -1703,6 +1703,11 @@ html.is-bonus-error .bonus-card {
     font-size: 0.425rem;
   }
 }
+@media (width <= 30em){
+  .header {
+    padding-block: 1.25rem;
+  }
+}
 @media (max-width: 30em) and (width <= 23.4375em){
   .hero__button-wrapper.button-wrapper .button {
     font-size: 1.25rem;
@@ -1724,6 +1729,9 @@ html.is-bonus-error .bonus-card {
   }
   .hero::before {
     display: none;
+  }
+  .hero__body {
+    padding-top: 4.6875rem;
   }
   .hero__container {
     overflow: visible;
@@ -1766,7 +1774,7 @@ html.is-bonus-error .bonus-card {
     bottom: auto;
     transform: translateX(-50%);
     max-width: calc(100vw - 2.5rem);
-    padding-bottom: env(safe-area-inset-bottom);
+    padding-bottom: calc(0.6875rem + env(safe-area-inset-bottom));
     margin: 0;
     transition: top 0.35s ease;
   }
@@ -1785,9 +1793,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (width <= 23.4375em){
-  .header {
-    padding-block: 1.25rem;
-  }
   .button {
     font-size: 1.75rem;
   }
@@ -1819,7 +1824,6 @@ html.is-bonus-error .bonus-card {
   }
   .header__logo {
     width: min(100%, 15.625rem);
-    padding-left: 4rem;
   }
   .header__icon {
     width: 2.125rem;
@@ -1929,9 +1933,6 @@ html.is-bonus-error .bonus-card {
   .hero__content {
     row-gap: 2rem;
   }
-  .hero__title {
-    padding-left: 9.375rem;
-  }
   .hero-bonus-card__step {
     width: 3.625rem;
   }
@@ -1975,8 +1976,10 @@ html.is-bonus-error .bonus-card {
 }
 @media (width > 48.75em) and (height <= 40.625em) and (max-width: 68.75em){
   .hero__title {
+    align-items: center;
+    width: 100%;
     margin-top: 3rem;
-    margin-left: 0;
+    margin-inline: auto;
     padding-left: 0;
     justify-self: center;
     text-align: center;
@@ -2004,9 +2007,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (width > 23.4375em) and (width <= 100em){
-  .header {
-    padding-block: clamp( 1.25rem , 0.6760204081625rem  +  2.4489795918vw , 3.125rem );
-  }
   .button {
     font-size: clamp( 1.75rem , 1.67346938775625rem  +  0.3265306122vw , 2rem );
   }
@@ -2037,6 +2037,11 @@ html.is-bonus-error .bonus-card {
     row-gap: 0.125rem;
   }
 }
+@media (width > 30em) and (width <= 98.125em){
+  .header {
+    padding-block: clamp( 1.25rem , 0.42431192660625rem  +  2.752293578vw , 3.125rem );
+  }
+}
 @media (max-width: 30em) and (width > 23.4375em) and (width <= 100em){
   .hero__button-wrapper.button-wrapper .button {
     font-size: clamp( 1.25rem , 1.0969387755125rem  +  0.6530612245vw , 1.75rem );
@@ -2049,12 +2054,6 @@ html.is-bonus-error .bonus-card {
   }
   .hero__container {
     gap: 0.75rem;
-  }
-  .hero__title {
-    justify-self: center;
-    align-items: center;
-    padding-left: 0;
-    text-align: center;
   }
   .hero__title-main {
     font-size: 2.375rem;
@@ -2088,11 +2087,6 @@ html.is-bonus-error .bonus-card {
     margin-top: 0.375rem;
     font-size: 0.425rem;
     line-height: 1.12;
-  }
-}
-@media (width > 48em) and (width <= 68.75em){
-  .header__logo {
-    padding-left: clamp( 6.25e-8rem , -21.686746780875rem  +  45.1807225904vw , 9.375rem );
   }
 }
 @media (max-width: 48em) and (width > 26.875em) and (width <= 48em){
@@ -2149,15 +2143,7 @@ html.is-bonus-error .bonus-card {
     font-size: clamp( 1.5rem , 0.32978723404375rem  +  1.7021276596vw , 2rem );
   }
 }
-@media (width > 68.75em){
-  .header__logo {
-    padding-left: 9.375rem;
-  }
-}
 @media (max-width: 68.75em) and (width > 48em) and (width <= 68.75em){
-  .hero__title {
-    padding-left: clamp( 6.25e-8rem , -21.686746780875rem  +  45.1807225904vw , 9.375rem );
-  }
   .bonus-steps__horse {
     width: clamp( 23.75rem , 3.50903614458125rem  +  42.1686746988vw , 32.5rem );
   }
@@ -2178,6 +2164,16 @@ html.is-bonus-error .bonus-card {
 @media (max-width: 68.75em) and (width > 23.4375em) and (width <= 50em){
   .bonus-steps__title p {
     padding-left: clamp( 5.625rem , -0.4411764705875rem  +  25.8823529412vw , 12.5rem );
+  }
+}
+@media (min-width: 68.75125em){
+  .header__container {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .header__logo {
+    justify-content: flex-start;
+    margin: 0;
   }
 }
 @media (width > 73.125em) and (width <= 98.125em){
@@ -2206,6 +2202,9 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (width > 98.125em){
+  .header {
+    padding-block: 3.125rem;
+  }
   .hero__container {
     gap: 3.375rem;
   }
@@ -2255,9 +2254,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (width > 100em){
-  .header {
-    padding-block: 3.125rem;
-  }
   .button {
     font-size: 2rem;
   }
