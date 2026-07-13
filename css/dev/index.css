@@ -2125,6 +2125,20 @@ html.is-bonus-error .bonus-card {
     font-size: clamp( 1.5rem , 0.32978723404375rem  +  1.7021276596vw , 2rem );
   }
 }
+@media (width > 68.75em) and (min-height: 40.62625em) and (max-height: 46.875em){
+  .hero__title {
+    margin-top: 3rem;
+  }
+  .hero__title-main {
+    font-size: 3rem;
+    line-height: 1.05;
+  }
+  .hero__title-sub {
+    margin-top: 0.125rem;
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+}
 @media (max-width: 68.75em) and (width > 48em) and (width <= 68.75em){
   .bonus-steps__horse {
     width: clamp( 23.75rem , 3.50903614458125rem  +  42.1686746988vw , 32.5rem );
