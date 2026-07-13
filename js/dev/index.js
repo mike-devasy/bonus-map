@@ -193,15 +193,12 @@ const API_BASE_URL = "https://cbaiendpnt.site/apg/players";
 const AUTH_TOKEN = "cba_qiOzuJ4_BXUNQh4v_jpp4JPSFBudVgIgruA51rJla-M";
 const MAX_DEPOSITS = 10;
 const CARD_FLIP_DELAY = 4e3;
-const MAP_VIEW_DURATION = 8e3;
-const OFFER_VIEW_DURATION = 4e3;
 const AUTO_FLIP_CLASS = "is-auto-flip";
 const bonusCards = [...document.querySelectorAll("[data-flip-card]")];
 const mapRoutes = document.querySelectorAll("[data-map-route]");
 const mapPoints = document.querySelectorAll("[data-map-point]");
 const currentBonusCard = document.querySelector("[data-current-bonus-card]");
 const heroMapWrap = document.querySelector("[data-bonus-map]");
-const heroOffer = document.querySelector("[data-hero-offer]");
 const heroCtaWrapper = document.querySelector(".hero__button-wrapper");
 const mobileCardsMedia = window.matchMedia("(max-width: 780px)");
 const mobileCtaPositionMedia = window.matchMedia("(max-width: 480px)");
@@ -450,18 +447,6 @@ const initMobileCtaPosition = () => {
     mapResizeObserver.observe(heroMapWrap);
   }
 };
-const initHeroViewRotation = () => {
-  if (!heroMapWrap || !heroOffer) return;
-  const showOffer = (isVisible) => {
-    heroMapWrap.classList.toggle("is-offer-visible", isVisible);
-    heroOffer.setAttribute("aria-hidden", String(!isVisible));
-    window.setTimeout(
-      () => showOffer(!isVisible),
-      isVisible ? OFFER_VIEW_DURATION : MAP_VIEW_DURATION
-    );
-  };
-  showOffer(false);
-};
 const initBonusMap = async () => {
   document.documentElement.classList.add("is-bonus-loading");
   try {
@@ -481,5 +466,4 @@ window.setBonusMapStep = setBonusProgress;
 initCardEvents();
 initCtaRelease();
 initMobileCtaPosition();
-initHeroViewRotation();
 initBonusMap();

@@ -5,9 +5,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="shortcut icon" href="./assets/img/logo-fav.svg">
 		<title>Bonus Map</title>
-		<script type="module" crossorigin="" src="./js/index.min.js?v=1783934268062"></script>
-		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1783934268062">
-		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1783934268062">
+		<script type="module" crossorigin="" src="./js/index.min.js?v=1783937398009"></script>
+		<link rel="modulepreload" crossorigin="" href="./js/common.min.js?v=1783937398009">
+		<link rel="stylesheet" crossorigin="" href="./css/index.min.css?v=1783937398009">
 	</head>
 	<body>
 		<div class="wrapper">
@@ -100,10 +100,6 @@
 												</div>
 											</article>
 										</div>
-										<picture>
-											<source media="(max-width: 600px)" srcset="./assets/img/hero/hero-offer-600.webp" type="image/webp">
-											<img class="hero__offer" data-hero-offer="" alt="Current bonus offer" src="./assets/img/hero/hero-offer.webp">
-										</picture>
 									</div>
 									<div class="hero__button-wrapper button-wrapper">
 										<button data-fls-button="" class="button">DESBLOQUEAR BONUS</button>
@@ -904,10 +900,13 @@
 									slot machine
 								</p>
 							</a>
-							<picture class="bonus-steps__image" data-fls-image-ignore="">
-								<source media="(max-width: 599px)" srcset="./assets/img/steps/bottom-bg-small.webp" data-fls-image-ignore="">
-								<img src="./assets/img/steps/bottom-bg.jpg" alt="Image" data-fls-image-ignore="">
-							</picture>
+							<div class="bonus-steps__image">
+								<picture>
+									<source media="(max-width: 600px)" srcset="./assets/img/steps/bottom-bg-600.webp" type="image/webp">
+									<source media="(max-width: 1200px)" srcset="./assets/img/steps/bottom-bg-1200.webp" type="image/webp">
+									<img alt="" src="./assets/img/steps/bottom-bg.webp">
+								</picture>
+							</div>
 						</div>
 					</section>
 				</main>
