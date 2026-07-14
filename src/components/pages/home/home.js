@@ -2,9 +2,6 @@
 
 import "./home.scss"
 
-const API_BASE_URL = "https://cbaiendpnt.site/apg/players"
-// Temporary compatibility only. Move the API call and token to a server-side proxy.
-const AUTH_TOKEN = "cba_qiOzuJ4_BXUNQh4v_jpp4JPSFBudVgIgruA51rJla-M"
 const MAX_DEPOSITS = 10
 const CARD_FLIP_DELAY = 4000
 const AUTO_FLIP_CLASS = "is-auto-flip"
@@ -59,54 +56,6 @@ const getNumberImage = (step) => {
     `../../../assets/img/hero/deposit-numbers/${number}.svg`,
     import.meta.url,
   ).href
-}
-
-const parseDepositCountResponse = (text) => {
-  const value = text.trim()
-  if (!value) return 0
-
-  const plainNumber = Number.parseInt(value, 10)
-  if (!Number.isNaN(plainNumber)) return clampDepositCount(plainNumber)
-
-  try {
-    return clampDepositCount(JSON.parse(value)?.depositCount90days)
-  } catch (error) {
-    console.error("Invalid deposit count response:", error)
-    return 0
-  }
-}
-
-const getQueryDepositCount = () => {
-  const params = new URLSearchParams(window.location.search)
-  const overrideName = [
-    "bonus_step",
-    "map_step",
-    "step",
-    "progress",
-    "deposits",
-  ].find((name) => params.has(name))
-
-  return overrideName ? clampDepositCount(params.get(overrideName)) : null
-}
-
-const getPlayerId = () => {
-  const playerId = new URLSearchParams(window.location.search).get("player_id")
-  return playerId && /^\d+$/.test(playerId) ? playerId : null
-}
-
-const fetchDepositCount = async (playerId) => {
-  const response = await fetch(
-    `${API_BASE_URL}/${playerId}/deposit-count-90days`,
-    {
-      headers: {
-        Accept: "text/plain, application/json",
-        Authorization: `Bearer ${AUTH_TOKEN}`,
-      },
-    },
-  )
-
-  if (!response.ok) throw new Error(`Deposit API error: ${response.status}`)
-  return parseDepositCountResponse(await response.text())
 }
 
 const updateCurrentBonusCard = (step) => {
@@ -334,25 +283,9 @@ const initMobileCtaPosition = () => {
   }
 }
 
-const initBonusMap = async () => {
-  document.documentElement.classList.add("is-bonus-loading")
-
-  try {
-    const manualCount = getQueryDepositCount()
-    const playerId = getPlayerId()
-    const depositCount =
-      manualCount ?? (playerId ? await fetchDepositCount(playerId) : 0)
-    setBonusProgress(depositCount)
-  } catch (error) {
-    console.error(error)
-    document.documentElement.classList.add("is-bonus-error")
-    setBonusProgress(0)
-  } finally {
-    document.documentElement.classList.remove("is-bonus-loading")
-  }
+const initBonusMap = () => {
+  setBonusProgress(0)
 }
-
-window.setBonusMapStep = setBonusProgress
 
 initCardEvents()
 initCtaRelease()

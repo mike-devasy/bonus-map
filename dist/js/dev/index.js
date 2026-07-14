@@ -189,8 +189,6 @@ const __vite_glob_0_6 = "" + new URL("../assets/img/hero/deposit-numbers/07.svg"
 const __vite_glob_0_7 = "" + new URL("../assets/img/hero/deposit-numbers/08.svg", import.meta.url).href;
 const __vite_glob_0_8 = "" + new URL("../assets/img/hero/deposit-numbers/09.svg", import.meta.url).href;
 const __vite_glob_0_9 = "" + new URL("../assets/img/hero/deposit-numbers/10.svg", import.meta.url).href;
-const API_BASE_URL = "https://cbaiendpnt.site/apg/players";
-const AUTH_TOKEN = "cba_qiOzuJ4_BXUNQh4v_jpp4JPSFBudVgIgruA51rJla-M";
 const MAX_DEPOSITS = 10;
 const CARD_FLIP_DELAY = 4e3;
 const AUTO_FLIP_CLASS = "is-auto-flip";
@@ -234,46 +232,6 @@ const getActiveStep = (completedCount) => Math.min(completedCount + 1, MAX_DEPOS
 const getNumberImage = (step) => {
   const number = String(step).padStart(2, "0");
   return new URL((/* @__PURE__ */ Object.assign({ "../../../assets/img/hero/deposit-numbers/01.svg": __vite_glob_0_0, "../../../assets/img/hero/deposit-numbers/02.svg": __vite_glob_0_1, "../../../assets/img/hero/deposit-numbers/03.svg": __vite_glob_0_2, "../../../assets/img/hero/deposit-numbers/04.svg": __vite_glob_0_3, "../../../assets/img/hero/deposit-numbers/05.svg": __vite_glob_0_4, "../../../assets/img/hero/deposit-numbers/06.svg": __vite_glob_0_5, "../../../assets/img/hero/deposit-numbers/07.svg": __vite_glob_0_6, "../../../assets/img/hero/deposit-numbers/08.svg": __vite_glob_0_7, "../../../assets/img/hero/deposit-numbers/09.svg": __vite_glob_0_8, "../../../assets/img/hero/deposit-numbers/10.svg": __vite_glob_0_9 }))[`../../../assets/img/hero/deposit-numbers/${number}.svg`], import.meta.url).href;
-};
-const parseDepositCountResponse = (text) => {
-  const value = text.trim();
-  if (!value) return 0;
-  const plainNumber = Number.parseInt(value, 10);
-  if (!Number.isNaN(plainNumber)) return clampDepositCount(plainNumber);
-  try {
-    return clampDepositCount(JSON.parse(value)?.depositCount90days);
-  } catch (error) {
-    console.error("Invalid deposit count response:", error);
-    return 0;
-  }
-};
-const getQueryDepositCount = () => {
-  const params = new URLSearchParams(window.location.search);
-  const overrideName = [
-    "bonus_step",
-    "map_step",
-    "step",
-    "progress",
-    "deposits"
-  ].find((name) => params.has(name));
-  return overrideName ? clampDepositCount(params.get(overrideName)) : null;
-};
-const getPlayerId = () => {
-  const playerId = new URLSearchParams(window.location.search).get("player_id");
-  return playerId && /^\d+$/.test(playerId) ? playerId : null;
-};
-const fetchDepositCount = async (playerId) => {
-  const response = await fetch(
-    `${API_BASE_URL}/${playerId}/deposit-count-90days`,
-    {
-      headers: {
-        Accept: "text/plain, application/json",
-        Authorization: `Bearer ${AUTH_TOKEN}`
-      }
-    }
-  );
-  if (!response.ok) throw new Error(`Deposit API error: ${response.status}`);
-  return parseDepositCountResponse(await response.text());
 };
 const updateCurrentBonusCard = (step) => {
   const data = BONUS_DATA[step - 1];
@@ -447,22 +405,9 @@ const initMobileCtaPosition = () => {
     mapResizeObserver.observe(heroMapWrap);
   }
 };
-const initBonusMap = async () => {
-  document.documentElement.classList.add("is-bonus-loading");
-  try {
-    const manualCount = getQueryDepositCount();
-    const playerId = getPlayerId();
-    const depositCount = manualCount ?? (playerId ? await fetchDepositCount(playerId) : 0);
-    setBonusProgress(depositCount);
-  } catch (error) {
-    console.error(error);
-    document.documentElement.classList.add("is-bonus-error");
-    setBonusProgress(0);
-  } finally {
-    document.documentElement.classList.remove("is-bonus-loading");
-  }
+const initBonusMap = () => {
+  setBonusProgress(0);
 };
-window.setBonusMapStep = setBonusProgress;
 initCardEvents();
 initCtaRelease();
 initMobileCtaPosition();
