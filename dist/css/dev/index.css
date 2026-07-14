@@ -686,6 +686,7 @@ body {
   padding: 0.6875rem;
   z-index: 4;
   position: relative;
+  box-sizing: border-box;
   border-radius: 1.1875rem;
   display: inline-flex;
   justify-content: center;
@@ -719,8 +720,11 @@ body {
   top: min(var(--hero-top-space) + var(--hero-map-offset) + min(40.8125rem, 40.7vw) + 1.875rem, 100svh - 9.75rem);
   bottom: auto;
   transform: translateX(-50%);
+  box-sizing: border-box;
 }
 .hero__button-wrapper.button-wrapper .button {
+  display: block;
+  box-sizing: border-box;
   animation: heroDepositGemGlow 1.8s ease-in-out infinite;
 }
 @keyframes heroDepositGemGlow {
@@ -1294,9 +1298,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (max-width: 68.75em) and (width <= 48em){
-  .hero__title {
-    padding-left: 6.25e-8rem;
-  }
   .bonus-steps__horse {
     width: 23.75rem;
   }
@@ -1313,19 +1314,35 @@ html.is-bonus-error .bonus-card {
   .hero__content {
     row-gap: 1.5rem;
   }
+}
+@media (max-width: 68.75em) and (max-width: 30em){
   .bonus-steps__title p {
-    padding-left: 5.625rem;
+    padding-left: 0;
   }
 }
 @media (max-width: 68.75em){
+  .header__container {
+    display: flex;
+    justify-content: center;
+  }
+  .header__logo {
+    justify-content: center;
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto;
+  }
   .hero {
+    background-image: none;
     --hero-title-offset: 1.875rem;
     --hero-content-height: 32.5rem;
     --hero-map-offset: 1.125rem;
     --hero-body-top-space: clamp(5rem, 3.706875rem + 5.517vw, 7.5rem);
   }
+  .hero::before {
+    display: none;
+  }
   .hero__body {
-    padding-top: var(--hero-body-top-space);
+    padding-top: 5rem;
   }
   .hero__container {
     grid-template-columns: 1fr;
@@ -1352,7 +1369,7 @@ html.is-bonus-error .bonus-card {
     bottom: auto;
     order: 3;
     width: min(118vw, 45rem);
-    margin-top: var(--hero-title-horse-gap);
+    margin-top: 6.25rem;
     justify-self: center;
   }
   .hero__stones {
@@ -1362,21 +1379,34 @@ html.is-bonus-error .bonus-card {
   }
   .hero__title {
     order: 1;
-    justify-self: start;
+    justify-self: center;
+    align-items: center;
+    width: 100%;
+    margin-inline: auto;
+    padding-left: 0;
+    text-align: center;
   }
   .hero__title-main {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
     font-size: clamp(2.25rem, 4.7vw, 2.625rem);
+    text-align: center;
+  }
+  .hero__title-sub {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    margin-inline: auto;
+    text-align: center;
   }
   .hero__map-panel {
     order: 2;
+    justify-self: center;
     max-width: min(100%, 47.5rem);
     margin-top: 0;
     margin-inline: auto;
-  }
-  .hero__button-wrapper {
-    left: 50%;
-    top: min(var(--hero-body-top-space) + 7rem + 1rem + min(31.6875rem, 66.7vw - 1.25rem) + 1.875rem, 100svh - 7.25rem);
-    width: min(32.5rem, 100vw - 1.875rem);
   }
   .hero-bonus-card {
     padding: 0.625rem 0.5rem 0.75rem;
@@ -1384,9 +1414,17 @@ html.is-bonus-error .bonus-card {
   }
   .hero__button-wrapper.button-wrapper {
     left: 50%;
-    top: min(var(--hero-body-top-space) + 7rem + 1rem + min(31.6875rem, 66.7vw - 1.25rem) + 1.875rem, 100svh - 7.25rem);
+    width: min(100vw - 1.875rem, 42.5rem);
+    top: min(var(--hero-body-top-space) + 6.25rem + min(31.6875rem, 66.7vw - 1.25rem), 100svh - 7.25rem);
   }
   .bonus-steps__title {
+    width: 100%;
+    margin-inline: auto;
+    text-align: center;
+  }
+  .bonus-steps__title p {
+    margin-inline: auto;
+    padding-left: 4.0625rem;
     text-align: center;
   }
   .bonus-steps__grid {
@@ -1504,9 +1542,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (max-width: 48.75em) and (width <= 23.4375em){
-  .hero__button-wrapper .button {
-    font-size: 1.25rem;
-  }
   .bonus-steps__chest {
     width: 22.5rem;
   }
@@ -1516,10 +1551,6 @@ html.is-bonus-error .bonus-card {
     background-position: center top;
     --hero-top-space: 0rem;
     --hero-bottom-space: 2.125rem;
-  }
-  .hero::before {
-    width: 220vw;
-    transform: translate(-50%, -18%);
   }
   .hero__body {
     min-height: auto;
@@ -1535,24 +1566,9 @@ html.is-bonus-error .bonus-card {
     bottom: 16%;
     width: 22%;
   }
-  .hero__button-wrapper {
-    z-index: 120;
-    top: auto;
-    bottom: max(1.5625rem, env(safe-area-inset-bottom));
-  }
-  .hero__button-wrapper .button {
-    width: 100%;
-    padding-inline: 1.25rem;
-  }
   .button-wrapper {
     left: auto;
     margin: 0 auto;
-  }
-  .hero__button-wrapper.button-wrapper {
-    z-index: 120;
-    left: 50%;
-    top: auto;
-    bottom: max(5.3125rem, env(safe-area-inset-bottom));
   }
   .bonus-steps__grid {
     display: flex;
@@ -1611,17 +1627,9 @@ html.is-bonus-error .bonus-card {
     margin-bottom: 0.25rem;
   }
 }
-@media (width <= 48em){
-  .header__logo {
-    padding-left: 6.25e-8rem;
-  }
-}
 @media (max-width: 48em) and (width <= 26.875em){
   .hero__title-sub {
     font-size: 1.25rem;
-  }
-  .hero__map-wrap {
-    width: 22.5rem;
   }
 }
 @media (max-width: 48em) and (width <= 23.4375em){
@@ -1629,38 +1637,19 @@ html.is-bonus-error .bonus-card {
     font-size: 1.8125rem;
   }
 }
+@media (max-width: 48em) and (width <= 21.875em){
+  .hero__map-wrap {
+    width: 22.5rem;
+  }
+}
 @media (max-width: 48em){
-  .header__container {
-    display: flex;
-    justify-content: center;
-  }
-  .header__logo {
-    justify-content: center;
-    width: fit-content;
-    max-width: 100%;
-    margin: 0 auto;
-  }
   .hero__container {
     box-sizing: border-box;
     padding-inline: 0.9375rem;
     justify-content: center;
   }
   .hero__title {
-    align-items: center;
-    width: min(100%, 100vw - 1.875rem);
     min-width: 0;
-    text-align: center;
-  }
-  .hero__title-main {
-    display: block;
-    width: auto;
-    max-width: 100%;
-  }
-  .hero__title-sub {
-    display: block;
-    width: auto;
-    max-width: 100%;
-    text-align: center;
   }
   .hero__map-panel {
     width: 100%;
@@ -1670,6 +1659,7 @@ html.is-bonus-error .bonus-card {
     overflow: visible;
   }
   .hero__map-wrap {
+    padding-inline: 0.625rem;
     min-width: 0;
     max-width: 100%;
   }
@@ -1680,6 +1670,12 @@ html.is-bonus-error .bonus-card {
     margin-top: 0.375rem;
     font-size: 0.4875rem;
     line-height: 1.1;
+  }
+}
+@media (max-width: 47.9375em){
+  .hero__button-wrapper.button-wrapper {
+    z-index: 120;
+    left: 50%;
   }
 }
 @media (max-width: 37.5em){
@@ -1693,31 +1689,29 @@ html.is-bonus-error .bonus-card {
     font-size: 0.425rem;
   }
 }
+@media (width <= 30em){
+  .header {
+    padding-block: 1.25rem;
+  }
+}
+@media (max-width: 30em) and (width <= 23.75em){
+  .hero__button-wrapper.button-wrapper .button {
+    font-size: 1.125rem;
+  }
+}
 @media (max-width: 30em) and (max-height: 46.25em){
-  .hero__button-wrapper {
-    top: 22.5rem;
-  }
-  .hero__button-wrapper.button-wrapper {
-    top: 25.625rem;
-  }
   html.is-cta-released .hero__button-wrapper.button-wrapper {
     top: calc(100svh - 12.5rem);
   }
 }
 @media (max-width: 30em) and (max-height: 40.625em){
-  .hero__button-wrapper.button-wrapper {
-    top: 22.5rem;
-  }
   html.is-cta-released .hero__button-wrapper.button-wrapper {
     top: calc(100svh - 7.5rem);
   }
 }
 @media (max-width: 30em){
-  .hero {
-    background-image: none;
-  }
-  .hero::before {
-    display: none;
+  .hero__body {
+    padding-top: 4.6875rem;
   }
   .hero__container {
     overflow: visible;
@@ -1728,17 +1722,8 @@ html.is-bonus-error .bonus-card {
   .hero__stones {
     display: none;
   }
-  .hero__button-wrapper {
-    position: fixed;
-    z-index: 120;
-    left: 50%;
-    right: auto;
-    top: 26.875rem;
-    bottom: auto;
-    transform: translateX(-50%);
-    width: min(21.875rem, 100vw - 1.875rem);
-    max-width: calc(100vw - 1.875rem);
-    margin: 0;
+  .hero__map-wrap {
+    padding-inline: 0rem;
   }
   .hero-bonus-card {
     width: 22%;
@@ -1762,17 +1747,20 @@ html.is-bonus-error .bonus-card {
     line-height: 1.08;
   }
   .hero__button-wrapper.button-wrapper {
-    position: fixed;
     z-index: 120;
     left: 50%;
     right: auto;
-    top: 26.5625rem;
+    top: var(--hero-cta-initial-top, 26.875rem);
     bottom: auto;
     transform: translateX(-50%);
-    width: min(21.875rem, 100vw - 1.875rem);
-    max-width: calc(100vw - 1.875rem);
+    max-width: calc(100vw - 1.25rem);
+    padding-bottom: calc(0.6875rem + env(safe-area-inset-bottom));
     margin: 0;
     transition: top 0.35s ease;
+  }
+  .hero__button-wrapper.button-wrapper .button {
+    width: 100%;
+    padding-inline: 1.25rem;
   }
   html.is-cta-released .hero__button-wrapper.button-wrapper {
     top: calc(100svh - 15.625rem);
@@ -1785,9 +1773,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (width <= 23.4375em){
-  .header {
-    padding-block: 1.25rem;
-  }
   .button {
     font-size: 1.75rem;
   }
@@ -1813,18 +1798,12 @@ html.is-bonus-error .bonus-card {
     width: 5rem;
   }
 }
-@media (max-width: 23.4375em){
-  .hero__map-wrap {
-    width: min(21.5625rem, 100%);
-  }
-}
 @media (width > 48.75em) and (height <= 40.625em){
   .header {
     padding-block: 1.25rem;
   }
   .header__logo {
     width: min(100%, 15.625rem);
-    padding-left: 4rem;
   }
   .header__icon {
     width: 2.125rem;
@@ -1886,8 +1865,9 @@ html.is-bonus-error .bonus-card {
     padding-inline: 2rem;
     font-size: 1.625rem;
   }
-  .hero__button-wrapper.button-wrapper {
-    top: calc(100svh - 5.875rem);
+  html.is-cta-released .hero__button-wrapper.button-wrapper {
+    top: calc(100svh - 9.375rem);
+    bottom: auto;
   }
 }
 @media (max-width: 75em) and (min-height: 62.5em){
@@ -1895,7 +1875,7 @@ html.is-bonus-error .bonus-card {
     min-height: 48.75rem;
   }
 }
-@media (min-width: 36.25125em) and (max-width: 68.75em) and (height <= 51.25em){
+@media (min-width: 48.00125em) and (max-width: 68.75em) and (height <= 51.25em){
   .hero {
     --hero-body-top-space: 5.5rem;
   }
@@ -1930,9 +1910,6 @@ html.is-bonus-error .bonus-card {
   .hero__content {
     row-gap: 2rem;
   }
-  .hero__title {
-    padding-left: 9.375rem;
-  }
   .hero-bonus-card__step {
     width: 3.625rem;
   }
@@ -1952,11 +1929,6 @@ html.is-bonus-error .bonus-card {
   }
   .hero__map-wrap {
     width: 45rem;
-  }
-}
-@media (max-width: 48.75em) and (width > 100em){
-  .hero__button-wrapper .button {
-    font-size: 1.75rem;
   }
 }
 @media (width > 48.75em) and (height <= 47.5em){
@@ -1981,8 +1953,10 @@ html.is-bonus-error .bonus-card {
 }
 @media (width > 48.75em) and (height <= 40.625em) and (max-width: 68.75em){
   .hero__title {
+    align-items: center;
+    width: 100%;
     margin-top: 3rem;
-    margin-left: 0;
+    margin-inline: auto;
     padding-left: 0;
     justify-self: center;
     text-align: center;
@@ -1994,9 +1968,9 @@ html.is-bonus-error .bonus-card {
     width: min(100%, 40rem);
   }
 }
-@media (max-width: 68.75em) and (width > 50em){
-  .bonus-steps__title p {
-    padding-left: 12.5rem;
+@media (max-width: 30em) and (width > 30em){
+  .hero__button-wrapper.button-wrapper .button {
+    font-size: 1.375rem;
   }
 }
 @media (max-width: 48.75em) and (width > 48.75em){
@@ -2005,9 +1979,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (width > 23.4375em) and (width <= 100em){
-  .header {
-    padding-block: clamp( 1.25rem , 0.6760204081625rem  +  2.4489795918vw , 3.125rem );
-  }
   .button {
     font-size: clamp( 1.75rem , 1.67346938775625rem  +  0.3265306122vw , 2rem );
   }
@@ -2038,19 +2009,54 @@ html.is-bonus-error .bonus-card {
     row-gap: 0.125rem;
   }
 }
-@media (min-width: 36.25125em) and (max-width: 68.75em){
+@media (width > 30em) and (width <= 98.125em){
+  .header {
+    padding-block: clamp( 1.25rem , 0.42431192660625rem  +  2.752293578vw , 3.125rem );
+  }
+}
+@media (width > 30em){
+  html.is-cta-released .hero__button-wrapper.button-wrapper {
+    top: calc(100svh - 9.375rem);
+    bottom: auto;
+  }
+}
+@media (max-width: 30em) and (width > 23.75em) and (width <= 30em){
+  .hero__button-wrapper.button-wrapper .button {
+    font-size: clamp( 1.125rem , 0.175rem  +  4vw , 1.375rem );
+  }
+}
+@media (min-width: 30.00125em) and (max-width: 68.75em){
+  .bonus-steps {
+    padding-top: 2.5rem;
+  }
+}
+@media (max-width: 48em) and (width > 26.875em) and (width <= 48em){
+  .hero__title-sub {
+    font-size: clamp( 1.25rem , 0.45488165680625rem  +  2.9585798817vw , 1.875rem );
+  }
+}
+@media (max-width: 48em) and (width > 23.4375em) and (width <= 48em){
+  .hero__title-main {
+    font-size: clamp( 1.8125rem , 1.3950381679375rem  +  1.7811704835vw , 2.25rem );
+  }
+}
+@media (max-width: 48em) and (width > 21.875em) and (width <= 48em){
+  .hero__map-wrap {
+    width: clamp( 22.5rem , 3.6602870813375rem  +  86.1244019139vw , 45rem );
+  }
+}
+@media (min-width: 48.00125em) and (max-width: 68.75em) and (height > 51.25em) and (width > 48em) and (width <= 68.75em){
+  .hero__map-panel {
+    max-width: clamp( 45rem , 39.21686746988125rem  +  12.0481927711vw , 47.5rem );
+  }
+}
+@media (min-width: 48.00125em) and (max-width: 68.75em) and (height > 51.25em){
   .hero {
     --hero-body-top-space: 6.25rem;
     --hero-bottom-space: 1.5rem;
   }
   .hero__container {
     gap: 0.75rem;
-  }
-  .hero__title {
-    justify-self: center;
-    align-items: center;
-    padding-left: 0;
-    text-align: center;
   }
   .hero__title-main {
     font-size: 2.375rem;
@@ -2059,12 +2065,6 @@ html.is-bonus-error .bonus-card {
   .hero__title-sub {
     font-size: 1.375rem;
     line-height: 1.05;
-  }
-  .hero__map-panel {
-    max-width: min(100%, 40rem);
-  }
-  .hero__map-wrap {
-    width: min(100%, 40rem);
   }
   .hero-bonus-card {
     width: 19.5%;
@@ -2086,24 +2086,6 @@ html.is-bonus-error .bonus-card {
     line-height: 1.12;
   }
 }
-@media (width > 48em) and (width <= 68.75em){
-  .header__logo {
-    padding-left: clamp( 6.25e-8rem , -21.686746780875rem  +  45.1807225904vw , 9.375rem );
-  }
-}
-@media (max-width: 48em) and (width > 26.875em) and (width <= 48em){
-  .hero__title-sub {
-    font-size: clamp( 1.25rem , 0.45488165680625rem  +  2.9585798817vw , 1.875rem );
-  }
-  .hero__map-wrap {
-    width: clamp( 22.5rem , -6.12426035503125rem  +  106.5088757396vw , 45rem );
-  }
-}
-@media (max-width: 48em) and (width > 23.4375em) and (width <= 48em){
-  .hero__title-main {
-    font-size: clamp( 1.8125rem , 1.3950381679375rem  +  1.7811704835vw , 2.25rem );
-  }
-}
 @media (width > 48.75em) and (width <= 98.125em){
   .hero__container {
     gap: clamp( 1.125rem , -1.09651898734375rem  +  4.5569620253vw , 3.375rem );
@@ -2121,11 +2103,6 @@ html.is-bonus-error .bonus-card {
 @media (max-width: 48.75em) and (width > 23.4375em) and (width <= 48.75em){
   .bonus-steps__chest {
     width: clamp( 22.5rem , 9.76851851851875rem  +  54.3209876543vw , 36.25rem );
-  }
-}
-@media (max-width: 48.75em) and (width > 23.4375em) and (width <= 100em){
-  .hero__button-wrapper .button {
-    font-size: clamp( 1.25rem , 1.0969387755125rem  +  0.6530612245vw , 1.75rem );
   }
 }
 @media (width > 68.75em) and (width <= 98.125em){
@@ -2148,15 +2125,21 @@ html.is-bonus-error .bonus-card {
     font-size: clamp( 1.5rem , 0.32978723404375rem  +  1.7021276596vw , 2rem );
   }
 }
-@media (width > 68.75em){
-  .header__logo {
-    padding-left: 9.375rem;
+@media (width > 68.75em) and (min-height: 40.62625em) and (max-height: 46.875em){
+  .hero__title {
+    margin-top: 3rem;
+  }
+  .hero__title-main {
+    font-size: 3rem;
+    line-height: 1.05;
+  }
+  .hero__title-sub {
+    margin-top: 0.125rem;
+    font-size: 1.5rem;
+    line-height: 1;
   }
 }
 @media (max-width: 68.75em) and (width > 48em) and (width <= 68.75em){
-  .hero__title {
-    padding-left: clamp( 6.25e-8rem , -21.686746780875rem  +  45.1807225904vw , 9.375rem );
-  }
   .bonus-steps__horse {
     width: clamp( 23.75rem , 3.50903614458125rem  +  42.1686746988vw , 32.5rem );
   }
@@ -2174,9 +2157,14 @@ html.is-bonus-error .bonus-card {
     row-gap: clamp( 1.5rem , 1.24137931034375rem  +  1.1034482759vw , 2rem );
   }
 }
-@media (max-width: 68.75em) and (width > 23.4375em) and (width <= 50em){
-  .bonus-steps__title p {
-    padding-left: clamp( 5.625rem , -0.4411764705875rem  +  25.8823529412vw , 12.5rem );
+@media (min-width: 68.75125em){
+  .header__container {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .header__logo {
+    justify-content: flex-start;
+    margin: 0;
   }
 }
 @media (width > 73.125em) and (width <= 98.125em){
@@ -2205,6 +2193,9 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (width > 98.125em){
+  .header {
+    padding-block: 3.125rem;
+  }
   .hero__container {
     gap: 3.375rem;
   }
@@ -2254,9 +2245,6 @@ html.is-bonus-error .bonus-card {
   }
 }
 @media (width > 100em){
-  .header {
-    padding-block: 3.125rem;
-  }
   .button {
     font-size: 2rem;
   }

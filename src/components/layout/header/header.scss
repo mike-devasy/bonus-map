@@ -4,16 +4,19 @@
 	width: 100%;
 	top: 0;
 	left: 0;
-	@include adaptiveValue("padding-block", 50, 20);
+	@include adaptiveValue("padding-block", 50, 20, 0, $maxWidthContainer, 480);
 
 	@media (width > toEm(780)) and (height <= toEm(650)) {
 		padding-block: 20px;
 	}
 
 	&__container {
-		// @include adaptiveValue("padding-inline", 160, 15);
+		@media (min-width: toEm(1100.02)) {
+			display: flex;
+			justify-content: flex-start;
+		}
 
-		@media (max-width: toEm(768)) {
+		@media (max-width: toEm(1100)) {
 			display: flex;
 			justify-content: center;
 		}
@@ -22,13 +25,15 @@
 	&__logo {
 		display: inline-flex;
 		align-items: center;
-		// justify-content:space-between;
 		gap: clamp(7px, 0.8vw, 10px);
 		width: min(100%, 300px);
-				@include adaptiveValue("padding-left", 150, 0, 0, 1100, 768);
 
+		@media (min-width: toEm(1100.02)) {
+			justify-content: flex-start;
+			margin: 0;
+		}
 
-		@media (max-width: toEm(768)) {
+		@media (max-width: toEm(1100)) {
 			justify-content: center;
 			width: fit-content;
 			max-width: 100%;
@@ -37,7 +42,6 @@
 
 		@media (width > toEm(780)) and (height <= toEm(650)) {
 			width: min(100%, 250px);
-			padding-left: 64px;
 		}
 	}
 
